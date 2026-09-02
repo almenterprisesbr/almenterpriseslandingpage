@@ -26,6 +26,52 @@
     });
   }
 
+  /* ---------- Hero typewriter (rotating outcomes) ---------- */
+
+  var typewriterEl = document.getElementById("heroTypewriter");
+  var typewriterPhrases = [
+    "mais clientes.",
+    "mais vendas.",
+    "mais autoridade.",
+    "no seu WhatsApp."
+  ];
+
+  if (typewriterEl) {
+    if (reduceMotion) {
+      typewriterEl.textContent = typewriterPhrases[0];
+    } else {
+      (function runTypewriter() {
+        var phraseIndex = 0;
+        var charIndex = 0;
+        var deleting = false;
+
+        function step() {
+          var fullText = typewriterPhrases[phraseIndex];
+
+          if (!deleting) {
+            charIndex++;
+            typewriterEl.textContent = fullText.substring(0, charIndex);
+            if (charIndex === fullText.length) {
+              setTimeout(function () { deleting = true; step(); }, 2000);
+              return;
+            }
+          } else {
+            charIndex--;
+            typewriterEl.textContent = fullText.substring(0, charIndex);
+            if (charIndex === 0) {
+              deleting = false;
+              phraseIndex = (phraseIndex + 1) % typewriterPhrases.length;
+            }
+          }
+
+          setTimeout(step, deleting ? 55 : 90);
+        }
+
+        step();
+      })();
+    }
+  }
+
   /* ---------- Hero scroll captions ---------- */
 
   var heroWrap = document.getElementById("heroWrap");

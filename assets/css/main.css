@@ -238,6 +238,21 @@ ul { list-style: none; }
   text-shadow: 0 0 36px rgba(226, 18, 42, 0.45);
 }
 
+.hero__typewriter-wrap {
+  display: inline-block;
+  min-height: 1.05em;
+}
+
+.hero__cursor {
+  color: var(--color-red);
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .hero__subtitle {
   font-size: clamp(15px, 1.6vw, 18px);
   line-height: 1.6;
@@ -330,9 +345,12 @@ ul { list-style: none; }
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  width: max-content;
+  max-width: 80vw;
+  text-align: center;
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 2px;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
   color: var(--color-white-dim);
   opacity: 0;
