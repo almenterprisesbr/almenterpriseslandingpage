@@ -3,81 +3,440 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MA Growth · Marketing Digital de Alta Performance</title>
-<meta name="description" content="Agência solo de marketing digital, design e desenvolvimento. Sites de alta conversão, social media estratégico e identidade visual, comandados direto por Matheus Almeida Vieira.">
+<title>MA Growth · Sites, Social Media e Identidade Visual que Vendem</title>
+<meta name="description" content="Matheus Almeida Vieira cria sites de alta conversão, social media estratégico e identidade visual. Atendimento direto, sem intermediários. Faça sua marca ser lembrada na hora da compra.">
+<meta name="theme-color" content="#08080a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2308080a'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='52' font-weight='700' fill='%23e30613' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="MA Growth · Ser visto. Ser lembrado. Ser escolhido.">
+<meta property="og:description" content="Sites, conteúdo e identidade visual construídos para levar a sua marca até o cliente certo, na hora certa.">
+<meta property="og:locale" content="pt_BR">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
+<a class="skip-link" href="#top">Ir para o conteúdo</a>
+
+<!-- Kinetic grid canvas: fixed, ultra-subtle, cursor-reactive -->
+<canvas id="gridCanvas" class="grid-canvas" aria-hidden="true"></canvas>
+<div class="grid-veil" aria-hidden="true"></div>
+
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a href="#top" class="nav__logo">MA<span>GROWTH</span></a>
+    <a href="#top" class="nav__logo" aria-label="MA Growth, início">MA<span>GROWTH</span></a>
 
-    <nav class="nav__links">
+    <nav class="nav__links" aria-label="Navegação principal">
       <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
     </nav>
 
-    <a class="nav__cta" href="https://wa.me/5513988631429" target="_blank" rel="noopener">
+    <a class="nav__cta" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20vim%20pelo%20site%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.4 5.15L2 22l5.09-1.5a9.87 9.87 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.02.89.9-2.94-.2-.31a8.22 8.22 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24z"/></svg>
       WhatsApp
     </a>
 
-    <button class="nav__burger" id="navBurger" aria-label="Abrir menu">
+    <button class="nav__burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
+<div class="menu" id="mobileMenu" hidden>
+  <nav class="menu__links" aria-label="Navegação mobile">
+    <a href="#servicos"><span>01</span>Serviços</a>
+    <a href="#portfolio"><span>02</span>Portfólio</a>
+    <a href="#como-funciona"><span>03</span>Como funciona</a>
+    <a href="#sobre"><span>04</span>Sobre</a>
+    <a href="#contato"><span>05</span>Contato</a>
+  </nav>
+  <a class="btn btn--primary menu__cta" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20vim%20pelo%20site%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener">Falar no WhatsApp</a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+
 <div class="hero-wrap" id="heroWrap">
   <section class="hero" id="top">
-
     <div class="hero__content">
-      <p class="hero__eyebrow" data-reveal>MATHEUS ALMEIDA VIEIRA <span class="hero__eyebrow-dot">&middot;</span> FUNDADOR DA MA GROWTH</p>
+
+      <p class="hero__badge" data-reveal>
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        Disponível para novos projetos
+      </p>
 
       <h1 class="hero__title" data-reveal>
-        <span class="hero__title-line">SER VISTO.</span>
-        <span class="hero__title-line">SER LEMBRADO.</span>
-        <span class="hero__title-line hero__title--accent">SER ESCOLHIDO.</span>
+        <span class="hero__title-static">No mercado digital, é preciso</span>
+        <span class="hero__title-typed">
+          <span class="hero__typed" id="heroTyped" aria-live="polite"></span><span class="hero__caret" aria-hidden="true"></span>
+        </span>
+        <span class="sr-only">ser visto, ser lembrado, ser escolhido.</span>
       </h1>
 
       <p class="hero__subtitle" data-reveal>
-        Não fazemos apenas sites, posts e conteúdo. Fazemos você ser lembrado, através de cada meio digital que leva sua marca até o cliente certo, na hora certa.
+        Meu objetivo é fazer com que o seu negócio seja lembrado. Construo cada peça do seu digital
+        &mdash; site, conteúdo e identidade &mdash; para levar a sua marca até o cliente certo, na hora certa.
       </p>
 
       <div class="hero__actions" data-reveal>
-        <a class="btn btn--primary" href="https://wa.me/5513988631429" target="_blank" rel="noopener">
+        <a class="btn btn--primary" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20vim%20pelo%20site%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener">
           Falar com o Matheus agora
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn btn--ghost" href="#servicos">Ver a jornada completa</a>
+        <a class="btn btn--ghost" href="#portfolio">Ver como eu trabalho</a>
       </div>
 
-      <p class="hero__support" data-reveal>Sites. Posts. Conteúdo. Tudo pra uma coisa só: ser lembrado.</p>
+      <p class="hero__support" data-reveal>Ser lembrado no digital significa ser escolhido na hora da compra.</p>
     </div>
 
-    <ul class="hero__captions" id="heroCaptions">
-      <li>Sites que vendem enquanto você dorme.</li>
-      <li>Conteúdo com estratégia, não sorte.</li>
-      <li>Identidade visual que eleva o preço da marca.</li>
-      <li>Uma pessoa só. Sem enrolação.</li>
+    <ul class="hero__captions" id="heroCaptions" aria-hidden="true">
+      <li>Sites pensados para converter, não só para existir.</li>
+      <li>Conteúdo com estratégia, não com sorte.</li>
+      <li>Identidade visual que sustenta o seu preço.</li>
+      <li>Uma pessoa só, do orçamento à entrega.</li>
     </ul>
 
     <div class="hero__scroll" id="heroScrollCue">
-      <span>Isso é só o começo. Role para ver mais</span>
+      <span>Isso é só o começo</span>
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
     </div>
   </section>
 </div>
 
-<section class="stub" id="servicos"><h2>Serviços</h2><p>Em construção, próxima etapa do site.</p></section>
-<section class="stub stub--alt" id="como-funciona"><h2>Como funciona</h2><p>Em construção, próxima etapa do site.</p></section>
-<section class="stub" id="sobre"><h2>Sobre</h2><p>Em construção, próxima etapa do site.</p></section>
-<section class="stub stub--alt" id="contato"><h2>Contato</h2><p>Em construção, próxima etapa do site.</p></section>
+<!-- ══════════ MARQUEE ══════════ -->
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__group">
+      <span>Sites de alta conversão</span><i></i>
+      <span>Landing pages</span><i></i>
+      <span>Social media estratégico</span><i></i>
+      <span>Identidade visual</span><i></i>
+      <span>Copywriting de vendas</span><i></i>
+      <span>Design de posts</span><i></i>
+      <span>SEO técnico</span><i></i>
+      <span>Performance web</span><i></i>
+    </div>
+    <div class="marquee__group">
+      <span>Sites de alta conversão</span><i></i>
+      <span>Landing pages</span><i></i>
+      <span>Social media estratégico</span><i></i>
+      <span>Identidade visual</span><i></i>
+      <span>Copywriting de vendas</span><i></i>
+      <span>Design de posts</span><i></i>
+      <span>SEO técnico</span><i></i>
+      <span>Performance web</span><i></i>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PROBLEMA ══════════ -->
+
+<section class="section section--tight" id="problema">
+  <div class="shell">
+    <div class="split">
+      <div class="split__lead" data-reveal>
+        <p class="eyebrow">O ponto cego</p>
+        <h2 class="h2">O seu cliente não escolhe<br>quem ele não lembra.</h2>
+      </div>
+      <div class="split__body">
+        <p class="lead" data-reveal>
+          A maioria dos negócios não perde venda por falta de qualidade. Perde porque, na hora
+          da decisão, quem apareceu primeiro na cabeça do cliente foi outro.
+        </p>
+        <ul class="checklist">
+          <li data-reveal><span aria-hidden="true"></span>Perfil bonito, mas que não gera conversa.</li>
+          <li data-reveal><span aria-hidden="true"></span>Site que apresenta a empresa e para por aí.</li>
+          <li data-reveal><span aria-hidden="true"></span>Posts sem linha, sem rosto e sem direção.</li>
+          <li data-reveal><span aria-hidden="true"></span>Marca que precisa competir sempre pelo preço.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SERVIÇOS ══════════ -->
+
+<section class="section" id="servicos">
+  <div class="shell">
+    <header class="section__head" data-reveal>
+      <p class="eyebrow">Serviços</p>
+      <h2 class="h2">Cada peça do seu digital,<br>feita para levar à venda.</h2>
+      <p class="section__sub">
+        Não entrego arquivos soltos. Entrego um conjunto onde site, conteúdo e identidade
+        conversam entre si e empurram o cliente para o próximo passo.
+      </p>
+    </header>
+
+    <div class="cards">
+      <article class="card" data-reveal>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M9.5 6.5h.01"/></svg>
+        </div>
+        <h3>Sites &amp; Landing Pages</h3>
+        <p>Seu site é o vendedor que trabalha enquanto você dorme. Construo páginas rápidas, claras e desenhadas para que o visitante entenda e aja.</p>
+        <ul class="card__list">
+          <li>Estrutura orientada à conversão</li>
+          <li>Responsivo em qualquer tela</li>
+          <li>Carregamento otimizado</li>
+        </ul>
+      </article>
+
+      <article class="card" data-reveal>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-4-1L3 20l1.1-4.6a8.4 8.4 0 0 1-1-4A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
+        </div>
+        <h3>Social Media Estratégico</h3>
+        <p>Conteúdo com estratégia, não com sorte. Planejo o que falar, para quem e com qual objetivo &mdash; para o perfil virar canal de entrada, não vitrine parada.</p>
+        <ul class="card__list">
+          <li>Linha editorial definida</li>
+          <li>Design de feed e stories</li>
+          <li>Legendas que puxam ação</li>
+        </ul>
+      </article>
+
+      <article class="card" data-reveal>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 4.5 4.5 0 0 0 0-9 4.5 4.5 0 0 1 0-9z"/></svg>
+        </div>
+        <h3>Identidade Visual</h3>
+        <p>Marca que sustenta o seu preço. Logo, cores, tipografia e aplicação em um sistema coerente, para você parecer o profissional que já é.</p>
+        <ul class="card__list">
+          <li>Logo e variações</li>
+          <li>Paleta e tipografia</li>
+          <li>Manual de aplicação</li>
+        </ul>
+      </article>
+
+      <article class="card" data-reveal>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h10M4 18h13"/><circle cx="19" cy="17" r="2.5"/></svg>
+        </div>
+        <h3>Conteúdo &amp; Copy</h3>
+        <p>As palavras decidem a venda. Escrevo textos que explicam o seu valor sem enrolação e conduzem quem lê até o contato.</p>
+        <ul class="card__list">
+          <li>Copy de site e anúncios</li>
+          <li>Roteiros para vídeo curto</li>
+          <li>Mensagens de abordagem</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PORTFÓLIO ══════════ -->
+
+<section class="section section--alt" id="portfolio">
+  <div class="shell">
+    <header class="section__head" data-reveal>
+      <p class="eyebrow">Portfólio</p>
+      <h2 class="h2">O trabalho fala<br>antes de mim.</h2>
+      <p class="section__sub">
+        Uma amostra dos formatos que eu entrego. Quer ver os projetos completos, com contexto
+        e resultado? Me chama que eu mando o material inteiro.
+      </p>
+    </header>
+
+    <div class="work">
+      <!-- TODO Matheus: trocar os previews por prints reais dos projetos (assets/img/) -->
+      <article class="work__item" data-reveal>
+        <div class="work__frame">
+          <div class="work__chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="work__canvas work__canvas--a" aria-hidden="true">
+            <div class="mock mock--hero"><span></span><em></em><b></b></div>
+          </div>
+        </div>
+        <div class="work__meta">
+          <p class="work__tag">Landing page &middot; Serviço local</p>
+          <h3>Página única focada em uma ação</h3>
+          <p>Estrutura curta, prova visual e um único caminho: chamar no WhatsApp.</p>
+        </div>
+      </article>
+
+      <article class="work__item" data-reveal>
+        <div class="work__frame">
+          <div class="work__chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="work__canvas work__canvas--b" aria-hidden="true">
+            <div class="mock mock--grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <div class="work__meta">
+          <p class="work__tag">Social media &middot; Feed completo</p>
+          <h3>Identidade aplicada no conteúdo</h3>
+          <p>Feed com padrão visual reconhecível, para a marca ser identificada antes do nome.</p>
+        </div>
+      </article>
+
+      <article class="work__item" data-reveal>
+        <div class="work__frame">
+          <div class="work__chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="work__canvas work__canvas--c" aria-hidden="true">
+            <div class="mock mock--brand"><span></span><em></em></div>
+          </div>
+        </div>
+        <div class="work__meta">
+          <p class="work__tag">Identidade visual &middot; Marca nova</p>
+          <h3>Do símbolo à aplicação</h3>
+          <p>Sistema visual fechado: logo, paleta, tipografia e como usar cada peça.</p>
+        </div>
+      </article>
+
+      <article class="work__item" data-reveal>
+        <div class="work__frame">
+          <div class="work__chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="work__canvas work__canvas--d" aria-hidden="true">
+            <div class="mock mock--site"><span></span><i></i><i></i><b></b></div>
+          </div>
+        </div>
+        <div class="work__meta">
+          <p class="work__tag">Site institucional &middot; Multi-página</p>
+          <h3>Presença completa e navegável</h3>
+          <p>Site que apresenta, convence e ainda deixa o contato a um clique de distância.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="work__cta" data-reveal>
+      <p>Quer ver os projetos completos e o que foi feito em cada um?</p>
+      <a class="btn btn--primary" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20quero%20ver%20o%20portf%C3%B3lio%20completo." target="_blank" rel="noopener">
+        Pedir o portfólio completo
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COMO FUNCIONA ══════════ -->
+
+<section class="section" id="como-funciona">
+  <div class="shell">
+    <header class="section__head" data-reveal>
+      <p class="eyebrow">Como funciona</p>
+      <h2 class="h2">Do primeiro contato<br>ao projeto no ar.</h2>
+      <p class="section__sub">
+        Um processo direto, sem etapas inventadas para encher relatório. Você sabe onde
+        o projeto está em cada momento.
+      </p>
+    </header>
+
+    <ol class="steps">
+      <li class="step" data-reveal>
+        <span class="step__num">01</span>
+        <h3>Conversa</h3>
+        <p>A gente fala sobre o seu negócio, o seu cliente e o que você quer alcançar. Sem formulário genérico e sem compromisso.</p>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step__num">02</span>
+        <h3>Estratégia</h3>
+        <p>Defino a mensagem, a estrutura e o caminho que leva o visitante até o contato. Você aprova antes de qualquer coisa ser produzida.</p>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step__num">03</span>
+        <h3>Execução</h3>
+        <p>Design e desenvolvimento acontecem com você acompanhando. Ajustes no meio do caminho, não só no fim.</p>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step__num">04</span>
+        <h3>Entrega e acompanhamento</h3>
+        <p>Publico, te explico como usar e sigo por perto para os ajustes. Você não fica sozinho depois do &ldquo;está no ar&rdquo;.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ SOBRE ══════════ -->
+
+<section class="section section--alt" id="sobre">
+  <div class="shell">
+    <div class="about">
+      <div class="about__text">
+        <p class="eyebrow" data-reveal>Sobre</p>
+        <h2 class="h2" data-reveal>Uma pessoa só.<br>Sem repasse, sem ruído.</h2>
+        <p class="lead" data-reveal>
+          Sou <strong>Matheus Almeida Vieira</strong>, fundador da MA Growth. Trabalho sozinho por
+          escolha: quem você contrata é quem pensa a estratégia, desenha, escreve e entrega.
+        </p>
+        <p class="about__p" data-reveal>
+          Isso significa resposta rápida, decisão sem intermediário e um projeto que não se perde
+          entre departamentos. Você fala comigo do orçamento à entrega &mdash; e depois dela também.
+        </p>
+        <p class="about__p" data-reveal>
+          Não prometo número mágico nem resultado da noite pro dia. Prometo trabalho bem feito,
+          prazo combinado e uma marca que fica na memória de quem importa: o seu cliente.
+        </p>
+
+        <div class="about__facts">
+          <div class="fact" data-reveal>
+            <strong>Direto</strong>
+            <span>Você fala comigo, não com atendimento</span>
+          </div>
+          <div class="fact" data-reveal>
+            <strong>Sem terceirização</strong>
+            <span>Quem vende é quem executa</span>
+          </div>
+          <div class="fact" data-reveal>
+            <strong>Prazo claro</strong>
+            <span>Combinado no início, cumprido no fim</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="about__card" data-reveal>
+        <div class="about__avatar" aria-hidden="true">MA</div>
+        <p class="about__quote">
+          &ldquo;Marca boa não é a mais barata nem a mais barulhenta.
+          É a que o cliente lembra quando finalmente decide comprar.&rdquo;
+        </p>
+        <p class="about__sign">Matheus Almeida Vieira <span>&middot; MA Growth</span></p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTATO ══════════ -->
+
+<section class="section section--cta" id="contato">
+  <div class="shell">
+    <div class="cta" data-reveal>
+      <p class="eyebrow">Contato</p>
+      <h2 class="cta__title">Vamos conversar sobre<br>o seu projeto?</h2>
+      <p class="cta__sub">
+        Me conta em poucas linhas o que você precisa. Eu te respondo dizendo se consigo
+        ajudar, como faria e quanto custa. Simples assim.
+      </p>
+
+      <div class="cta__actions">
+        <a class="btn btn--primary btn--lg" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20vim%20pelo%20site%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.4 5.15L2 22l5.09-1.5a9.87 9.87 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.02.89.9-2.94-.2-.31a8.22 8.22 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24z"/></svg>
+          Chamar no WhatsApp
+        </a>
+        <a class="btn btn--ghost btn--lg" href="mailto:almenterprisesbr@gmail.com?subject=Projeto%20via%20site%20MA%20Growth">Enviar um e-mail</a>
+      </div>
+
+      <p class="cta__note">Resposta no mesmo dia, em horário comercial.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <a href="#top" class="nav__logo footer__logo">MA<span>GROWTH</span></a>
+    <nav class="footer__links" aria-label="Rodapé">
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <p class="footer__copy">&copy; <span id="year">2026</span> MA Growth &middot; Matheus Almeida Vieira</p>
+  </div>
+</footer>
 
 <script src="assets/js/main.js"></script>
 </body>
