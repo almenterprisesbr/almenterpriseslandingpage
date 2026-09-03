@@ -10,6 +10,79 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var isTouch = window.matchMedia("(hover: none)").matches;
 
+  /* revela os itens da hero (usado ao fim do vídeo de intro, ou de imediato
+     quando o vídeo é pulado / não roda) */
+  function revealHero() {
+    var items = document.querySelectorAll("#top [data-reveal]");
+    for (var i = 0; i < items.length; i++) items[i].classList.add("is-visible");
+  }
+
+  /* ==========================================================
+     0. INTRO — vídeo cinematográfico de abertura
+     Roda uma vez por sessão. Some ao terminar, revelando a hero
+     por baixo já em movimento (fade + subida).
+     ========================================================== */
+
+  (function introVideo() {
+    var overlay = document.getElementById("intro");
+    var video = document.getElementById("introVideo");
+    var skipBtn = document.getElementById("introSkip");
+    var soundBtn = document.getElementById("introSound");
+    var playBtn = document.getElementById("introPlay");
+    if (!overlay || !video) { revealHero(); return; }
+
+    var SESSION_KEY = "maGrowthIntroPlayed";
+    var alreadyPlayed = false;
+    try { alreadyPlayed = sessionStorage.getItem(SESSION_KEY) === "1"; } catch (e) {}
+
+    var canPlayMp4 = !!(video.canPlayType && video.canPlayType("video/mp4"));
+
+    if (reduceMotion || alreadyPlayed || !canPlayMp4) {
+      overlay.hidden = true;
+      revealHero();
+      return;
+    }
+
+    document.documentElement.style.overflow = "hidden";
+
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      overlay.classList.add("is-done");
+      document.documentElement.style.overflow = "";
+      try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (e) {}
+      revealHero();
+      video.pause();
+      setTimeout(function () { overlay.hidden = true; }, 1000);
+    }
+
+    video.addEventListener("ended", finish);
+    skipBtn.addEventListener("click", finish);
+
+    soundBtn.addEventListener("click", function () {
+      video.muted = !video.muted;
+      soundBtn.setAttribute("aria-pressed", String(!video.muted));
+    });
+
+    var playAttempt = video.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(function () {
+        if (!playBtn) return;
+        playBtn.hidden = false;
+        playBtn.addEventListener("click", function () {
+          playBtn.hidden = true;
+          video.play().catch(finish);
+        }, { once: true });
+      });
+    }
+
+    /* nunca prende o visitante atrás do vídeo: se nada acontecer, segue pro site */
+    setTimeout(function () {
+      if (video.paused && video.currentTime === 0) finish();
+    }, 6000);
+  })();
+
   /* ==========================================================
      1. KINETIC GRID — canvas de fundo
      Adaptado do componente KineticGrid, com intensidade
@@ -393,7 +466,11 @@
      ========================================================== */
 
   (function reveal() {
-    var items = document.querySelectorAll("[data-reveal], .step");
+    /* a hero é revelada à parte, em sincronia com o fim do vídeo de intro */
+    var items = Array.prototype.filter.call(
+      document.querySelectorAll("[data-reveal], .step"),
+      function (el) { return !el.closest("#top"); }
+    );
     if (!items.length) return;
 
     if (!("IntersectionObserver" in window) || reduceMotion) {
