@@ -281,12 +281,12 @@
           <span class="hoverlist__text" data-text="Social Media Estratégico">Social Media Estratégico</span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
-        <li class="hoverlist__item" data-mock="brand">
+        <li class="hoverlist__item" data-mock="brand" data-device="tabs" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__text" data-text="Identidade Visual">Identidade Visual</span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
-        <li class="hoverlist__item" data-mock="site">
-          <span class="hoverlist__text" data-text="Conteúdo &amp; Copy">Conteúdo &amp; Copy</span>
+        <li class="hoverlist__item" data-mock="video">
+          <span class="hoverlist__text" data-text="Vídeos/Anúncios com IA">Vídeos/Anúncios com IA</span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
       </ul>
@@ -294,7 +294,7 @@
         <div class="mock mock--hero"><span></span><em></em><b></b></div>
         <div class="mock mock--grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="mock mock--brand"><span></span><em></em></div>
-        <div class="mock mock--site"><span></span><i></i><i></i><b></b></div>
+        <div class="mock mock--video"><span></span></div>
       </div>
     </div>
 
@@ -502,6 +502,48 @@
       <button class="carousel__nav carousel__nav--next" id="carouselNext" type="button" aria-label="Próximo post">&rsaquo;</button>
     </div>
     <div class="carousel__dots" id="carouselDots"></div>
+  </div>
+
+  <div class="device-modal__panel" data-panel="tabs" id="panelTabs" hidden>
+    <p class="carousel__eyebrow">&mdash; Identidade Visual &mdash;</p>
+    <div class="id-tabs">
+      <div class="id-tabs__bar" id="idTabsBar" role="tablist">
+        <button class="id-tabs__btn is-active" type="button" data-tab="logo" role="tab" aria-selected="true">Logotipo</button>
+        <button class="id-tabs__btn" type="button" data-tab="paleta" role="tab" aria-selected="false">Paleta de cores</button>
+        <button class="id-tabs__btn" type="button" data-tab="tipografia" role="tab" aria-selected="false">Tipografia</button>
+        <button class="id-tabs__btn" type="button" data-tab="grafico" role="tab" aria-selected="false">Elementos gráficos</button>
+      </div>
+      <div class="id-tabs__panels" id="idTabsPanels">
+        <div class="id-tabs__panel is-active" data-tab-panel="logo">
+          <div class="id-tabs__preview"><div class="mock mock--brand"><span></span><em></em></div></div>
+          <div class="id-tabs__text">
+            <h4>Logotipo</h4>
+            <p>Como o símbolo é construído, as variações (positiva, negativa, monocromática) e onde cada uma pode ser usada.</p>
+          </div>
+        </div>
+        <div class="id-tabs__panel" data-tab-panel="paleta">
+          <div class="id-tabs__preview"><div class="mock mock--palette"><i></i><i></i><i></i><i></i></div></div>
+          <div class="id-tabs__text">
+            <h4>Paleta de cores</h4>
+            <p>As cores oficiais da marca, o porquê de cada uma e como combinar sem perder consistência visual.</p>
+          </div>
+        </div>
+        <div class="id-tabs__panel" data-tab-panel="tipografia">
+          <div class="id-tabs__preview"><div class="mock mock--type"><strong>Aa</strong><small></small></div></div>
+          <div class="id-tabs__text">
+            <h4>Tipografia</h4>
+            <p>As fontes escolhidas pra cada uso, do título ao texto corrido, e a hierarquia entre elas.</p>
+          </div>
+        </div>
+        <div class="id-tabs__panel" data-tab-panel="grafico">
+          <div class="id-tabs__preview"><div class="mock mock--graphics"><i></i><i></i><i></i></div></div>
+          <div class="id-tabs__text">
+            <h4>Elementos gráficos</h4>
+            <p>Ícones, texturas e formas de apoio que reforçam a identidade em qualquer peça.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

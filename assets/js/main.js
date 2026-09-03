@@ -748,7 +748,34 @@
   })();
 
   /* ==========================================================
-     10. GALERIA DE POSTS — pilha que abre em leque
+     10. ABAS DE IDENTIDADE VISUAL — dentro do modal, painel "tabs"
+     ========================================================== */
+
+  (function identityTabs() {
+    var bar = document.getElementById("idTabsBar");
+    var panelsWrap = document.getElementById("idTabsPanels");
+    if (!bar || !panelsWrap) return;
+
+    var buttons = bar.querySelectorAll(".id-tabs__btn");
+    var panels = panelsWrap.querySelectorAll(".id-tabs__panel");
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-tab");
+        buttons.forEach(function (b) {
+          var active = b === btn;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-selected", String(active));
+        });
+        panels.forEach(function (panel) {
+          panel.classList.toggle("is-active", panel.getAttribute("data-tab-panel") === key);
+        });
+      });
+    });
+  })();
+
+  /* ==========================================================
+     11. GALERIA DE POSTS — pilha que abre em leque
      ========================================================== */
 
   (function postGallery() {
@@ -763,7 +790,7 @@
   })();
 
   /* ==========================================================
-     11. FERRAMENTAS — carrossel de ícones das ferramentas usadas
+     12. FERRAMENTAS — carrossel de ícones das ferramentas usadas
      ========================================================== */
 
   (function toolsMarquee() {
@@ -823,7 +850,7 @@
   })();
 
   /* ==========================================================
-     12. Ano no rodapé
+     13. Ano no rodapé
      ========================================================== */
 
   var year = document.getElementById("year");

@@ -1197,8 +1197,8 @@ strong { font-weight: 600; color: var(--white); }
 
 .carousel {
   position: relative;
-  width: min(920px, 94vw);
-  height: 340px;
+  width: min(980px, 94vw);
+  height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1211,14 +1211,14 @@ strong { font-weight: 600; color: var(--white); }
   --dist: 0;
   position: absolute;
   top: 50%; left: 50%;
-  width: 208px; height: 290px;
-  margin: -145px 0 0 -104px;
+  width: 260px; height: 370px;
+  margin: -185px 0 0 -130px;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   box-shadow: 0 30px 60px rgba(0, 0, 0, .5);
   pointer-events: none;
-  transform: translateX(calc(var(--offset) * 176px)) scale(calc(1 - var(--dist) * 0.16));
+  transform: translateX(calc(var(--offset) * 225px)) scale(calc(1 - var(--dist) * 0.16));
   opacity: calc(1 - var(--dist) * 0.4);
   filter: blur(calc(var(--dist) * 3px));
   z-index: calc(10 - var(--dist));
@@ -1263,10 +1263,101 @@ strong { font-weight: 600; color: var(--white); }
 .carousel__dot.is-active { background: var(--red); transform: scale(1.35); }
 
 @media (max-width: 640px) {
-  .carousel { height: 260px; }
-  .carousel__slide { width: 156px; height: 218px; margin: -109px 0 0 -78px; }
-  .carousel__slide { transform: translateX(calc(var(--offset) * 128px)) scale(calc(1 - var(--dist) * 0.16)); }
+  .carousel { height: 320px; }
+  .carousel__slide { width: 196px; height: 274px; margin: -137px 0 0 -98px; }
+  .carousel__slide { transform: translateX(calc(var(--offset) * 164px)) scale(calc(1 - var(--dist) * 0.16)); }
   .carousel__nav { width: 38px; height: 38px; font-size: 19px; }
+}
+
+/* -- modal: abas de identidade visual -- */
+
+.id-tabs { width: min(760px, 92vw); }
+
+.id-tabs__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(17, 17, 17, .7);
+  backdrop-filter: blur(10px);
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s var(--ease) .1s, transform .4s var(--ease) .1s;
+}
+.device-modal.is-open .id-tabs__bar { opacity: 1; transform: translateY(0); }
+
+.id-tabs__btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gray);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color .2s ease, background-color .2s ease;
+}
+.id-tabs__btn:hover { color: var(--white); }
+.id-tabs__btn.is-active { color: var(--white); background: rgba(242, 242, 244, .09); }
+
+.id-tabs__panels {
+  position: relative;
+  padding: 30px;
+  border-radius: 18px;
+  border: 1px solid var(--line-strong);
+  background: rgba(17, 17, 17, .55);
+  backdrop-filter: blur(10px);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+}
+
+.id-tabs__panel {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+  width: 100%;
+}
+.id-tabs__panel.is-active {
+  display: grid;
+  animation: idTabFade .45s var(--ease);
+}
+@keyframes idTabFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.id-tabs__preview {
+  width: 100%;
+  min-height: 260px;
+  border-radius: 14px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+.id-tabs__preview .mock { width: auto; }
+
+.id-tabs__text h4 {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.3px;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+.id-tabs__text p { font-size: 14.5px; line-height: 1.65; color: var(--gray); }
+
+@media (max-width: 640px) {
+  .id-tabs__panels { padding: 22px; min-height: 0; }
+  .id-tabs__panel.is-active { grid-template-columns: 1fr; gap: 18px; }
+  .id-tabs__preview { min-height: 200px; }
+  .id-tabs__btn { padding: 8px 13px; font-size: 12.5px; }
 }
 
 /* mocks abstratos (placeholders visuais) */
@@ -1287,11 +1378,57 @@ strong { font-weight: 600; color: var(--white); }
 }
 .mock--brand em { width: 96px; margin-top: 4px; }
 
-.mock--site { align-items: stretch; }
-.mock--site span { width: 46%; }
-.mock--site i { display: block; height: 6px; border-radius: 3px; background: rgba(242,242,244,.09); }
-.mock--site i:last-of-type { width: 72%; }
-.mock--site b { width: 84px; }
+.mock--video { justify-content: center; }
+.mock--video span {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(242, 242, 244, .08);
+  border: 1px solid var(--line-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mock--video span::after {
+  content: "";
+  width: 0; height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 14px solid var(--red);
+  margin-left: 3px;
+}
+
+.mock--palette { flex-direction: row; gap: 12px; }
+.mock--palette i { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; }
+.mock--palette i:nth-child(1) { background: var(--red); }
+.mock--palette i:nth-child(2) { background: #0a0a0a; border: 1px solid var(--line-strong); }
+.mock--palette i:nth-child(3) { background: #f2f2f4; }
+.mock--palette i:nth-child(4) { background: var(--gray); }
+
+.mock--type strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--white);
+}
+.mock--type small {
+  display: block;
+  width: 70%;
+  height: 7px;
+  border-radius: 4px;
+  background: rgba(242, 242, 244, .15);
+  margin-top: 14px;
+}
+
+.mock--graphics { flex-direction: row; gap: 16px; }
+.mock--graphics i:nth-child(1) { width: 32px; height: 32px; border-radius: 50%; background: rgba(var(--red-glow), .5); }
+.mock--graphics i:nth-child(2) { width: 32px; height: 32px; border-radius: 8px; background: rgba(242, 242, 244, .15); transform: rotate(18deg); }
+.mock--graphics i:nth-child(3) {
+  width: 0; height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 28px solid rgba(242, 242, 244, .15);
+}
 
 .mock--post { position: absolute; inset: 0; }
 .mock--post::before {
