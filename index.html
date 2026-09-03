@@ -56,8 +56,8 @@
     <a href="#top" class="nav__logo" aria-label="MA Growth, início">MA<span>GROWTH</span></a>
 
     <nav class="nav__links" aria-label="Navegação principal">
-      <a href="#servicos">Serviços</a>
       <a href="#portfolio">Portfólio</a>
+      <a href="#servicos">Serviços</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
@@ -76,8 +76,8 @@
 
 <div class="menu" id="mobileMenu" hidden>
   <nav class="menu__links" aria-label="Navegação mobile">
-    <a href="#servicos"><span>01</span>Serviços</a>
-    <a href="#portfolio"><span>02</span>Portfólio</a>
+    <a href="#portfolio"><span>01</span>Portfólio</a>
+    <a href="#servicos"><span>02</span>Serviços</a>
     <a href="#como-funciona"><span>03</span>Como funciona</a>
     <a href="#sobre"><span>04</span>Sobre</a>
     <a href="#contato"><span>05</span>Contato</a>
@@ -139,23 +139,23 @@
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
     <div class="marquee__group">
-      <span>Sites de alta conversão</span><i></i>
+      <span>Sites ou apps</span><i></i>
       <span>Landing pages</span><i></i>
       <span>Social media estratégico</span><i></i>
       <span>Identidade visual</span><i></i>
       <span>Copywriting de vendas</span><i></i>
       <span>Design de posts</span><i></i>
-      <span>SEO técnico</span><i></i>
+      <span>Vídeos/Anúncios com IA</span><i></i>
       <span>Performance web</span><i></i>
     </div>
     <div class="marquee__group">
-      <span>Sites de alta conversão</span><i></i>
+      <span>Sites ou apps</span><i></i>
       <span>Landing pages</span><i></i>
       <span>Social media estratégico</span><i></i>
       <span>Identidade visual</span><i></i>
       <span>Copywriting de vendas</span><i></i>
       <span>Design de posts</span><i></i>
-      <span>SEO técnico</span><i></i>
+      <span>Vídeos/Anúncios com IA</span><i></i>
       <span>Performance web</span><i></i>
     </div>
   </div>
@@ -182,6 +182,80 @@
           <li data-reveal><span aria-hidden="true"></span>Marca que precisa competir sempre pelo preço.</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PORTFÓLIO ══════════ -->
+
+<section class="section section--alt" id="portfolio">
+  <div class="shell">
+    <header class="section__head" data-reveal>
+      <p class="eyebrow">Portfólio</p>
+      <h2 class="h2">Uma amostra do meu trabalho.</h2>
+      <p class="section__sub"><strong class="section__hint">Clique nas seções para ver mais.</strong></p>
+    </header>
+
+    <!-- Caixa 1: Serviços — lista com prévia flutuante no hover -->
+    <div class="showcase" data-reveal>
+      <p class="showcase__label">01 &mdash; Serviços</p>
+      <ul class="hoverlist" id="hoverList">
+        <li class="hoverlist__item" data-mock="hero" data-device="mac" tabindex="0" role="button" aria-haspopup="dialog">
+          <span class="hoverlist__main">
+            <span class="hoverlist__text" data-text="Sites &amp; Landing Pages">Sites &amp; Landing Pages</span>
+            <span class="hoverlist__hint">Clique para ver mais</span>
+            <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
+          </span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="grid" data-device="carousel" tabindex="0" role="button" aria-haspopup="dialog">
+          <span class="hoverlist__main">
+            <span class="hoverlist__text" data-text="Social Media Estratégico">Social Media Estratégico</span>
+            <span class="hoverlist__hint">Clique para ver mais</span>
+            <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
+          </span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="brand" data-device="tabs" tabindex="0" role="button" aria-haspopup="dialog">
+          <span class="hoverlist__main">
+            <span class="hoverlist__text" data-text="Identidade Visual">Identidade Visual</span>
+            <span class="hoverlist__hint">Clique para ver mais</span>
+            <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
+          </span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="video" data-device="phone" tabindex="0" role="button" aria-haspopup="dialog">
+          <span class="hoverlist__main">
+            <span class="hoverlist__text" data-text="Vídeos/Anúncios (com IA)">Vídeos/Anúncios (com IA)</span>
+            <span class="hoverlist__hint">Clique para ver mais</span>
+            <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
+          </span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+      </ul>
+      <div class="hoverlist__ghost" id="hoverGhost" aria-hidden="true">
+        <div class="mock mock--hero"><span></span><em></em><b></b></div>
+        <div class="mock mock--grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="mock mock--brand"><span></span><em></em></div>
+        <div class="mock mock--video"><span></span></div>
+      </div>
+    </div>
+
+    <!-- Caixa 2: Ferramentas — carrossel de nomes -->
+    <div class="showcase showcase--alt" data-reveal>
+      <p class="showcase__label">Ferramentas</p>
+      <p class="showcase__sub">Usadas no processo de criação e execução de cada entrega.</p>
+      <div class="marquee marquee--tools" aria-hidden="true">
+        <div class="marquee__track" id="toolsTrack"></div>
+      </div>
+    </div>
+
+    <div class="work__cta" data-reveal>
+      <p>Quer ver os projetos completos e o que foi feito em cada um?</p>
+      <a class="btn btn--primary" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20quero%20ver%20o%20portf%C3%B3lio%20completo." target="_blank" rel="noopener">
+        Pedir o portfólio completo
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -255,81 +329,6 @@
   </div>
 </section>
 
-<!-- ══════════ PORTFÓLIO ══════════ -->
-
-<section class="section section--alt" id="portfolio">
-  <div class="shell">
-    <header class="section__head" data-reveal>
-      <p class="eyebrow">Portfólio</p>
-      <h2 class="h2">O trabalho fala<br>antes de mim.</h2>
-      <p class="section__sub">
-        Uma amostra de como eu trabalho: os serviços, o formato dos posts e as ferramentas por
-        trás de cada entrega.
-      </p>
-      <p class="showcase__package">Ecossistema de Vendas MA Growth <span>(PACOTE)</span></p>
-      <a class="btn btn--ghost showcase__cta" href="#servicos">Quero algo semelhante</a>
-    </header>
-
-    <!-- Caixa 1: Serviços — lista com prévia flutuante no hover -->
-    <div class="showcase" data-reveal>
-      <p class="showcase__label">01 &mdash; Serviços</p>
-      <ul class="hoverlist" id="hoverList">
-        <li class="hoverlist__item" data-mock="hero" data-device="mac" tabindex="0" role="button" aria-haspopup="dialog">
-          <span class="hoverlist__main">
-            <span class="hoverlist__text" data-text="Sites &amp; Landing Pages">Sites &amp; Landing Pages</span>
-            <span class="hoverlist__hint">Clique para ver mais</span>
-          </span>
-          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
-        </li>
-        <li class="hoverlist__item" data-mock="grid" data-device="carousel" tabindex="0" role="button" aria-haspopup="dialog">
-          <span class="hoverlist__main">
-            <span class="hoverlist__text" data-text="Social Media Estratégico">Social Media Estratégico</span>
-            <span class="hoverlist__hint">Clique para ver mais</span>
-          </span>
-          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
-        </li>
-        <li class="hoverlist__item" data-mock="brand" data-device="tabs" tabindex="0" role="button" aria-haspopup="dialog">
-          <span class="hoverlist__main">
-            <span class="hoverlist__text" data-text="Identidade Visual">Identidade Visual</span>
-            <span class="hoverlist__hint">Clique para ver mais</span>
-          </span>
-          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
-        </li>
-        <li class="hoverlist__item" data-mock="video" data-device="phone" tabindex="0" role="button" aria-haspopup="dialog">
-          <span class="hoverlist__main">
-            <span class="hoverlist__text" data-text="Vídeos/Anúncios (com IA)">Vídeos/Anúncios (com IA)</span>
-            <span class="hoverlist__hint">Clique para ver mais</span>
-          </span>
-          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
-        </li>
-      </ul>
-      <div class="hoverlist__ghost" id="hoverGhost" aria-hidden="true">
-        <div class="mock mock--hero"><span></span><em></em><b></b></div>
-        <div class="mock mock--grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="mock mock--brand"><span></span><em></em></div>
-        <div class="mock mock--video"><span></span></div>
-      </div>
-    </div>
-
-    <!-- Caixa 2: Ferramentas — carrossel de ícones -->
-    <div class="showcase showcase--alt" data-reveal>
-      <p class="showcase__label">02 &mdash; Ferramentas</p>
-      <p class="showcase__sub">Tudo isso trabalha junto pra tirar o seu projeto do papel.</p>
-      <div class="marquee marquee--tools" aria-hidden="true">
-        <div class="marquee__track" id="toolsTrack"></div>
-      </div>
-    </div>
-
-    <div class="work__cta" data-reveal>
-      <p>Quer ver os projetos completos e o que foi feito em cada um?</p>
-      <a class="btn btn--primary" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20quero%20ver%20o%20portf%C3%B3lio%20completo." target="_blank" rel="noopener">
-        Pedir o portfólio completo
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- ══════════ COMO FUNCIONA ══════════ -->
 
 <section class="section" id="como-funciona">
@@ -375,29 +374,21 @@
     <div class="about">
       <div class="about__text">
         <p class="eyebrow" data-reveal>Sobre</p>
-        <h2 class="h2" data-reveal>Uma pessoa só.<br>Sem repasse, sem ruído.</h2>
+        <h2 class="h2" data-reveal>Uma pessoa só.</h2>
         <p class="lead" data-reveal>
-          Sou <strong>Matheus Almeida Vieira</strong>, fundador da MA Growth. Trabalho sozinho por
-          escolha: quem você contrata é quem pensa a estratégia, desenha, escreve e entrega.
+          Sou <strong>Matheus Almeida</strong>, fundador da MA Growth. Uso inteligência artificial em
+          parte do processo, pra ganhar tempo na criação e na análise sem abrir mão da qualidade.
         </p>
         <p class="about__p" data-reveal>
-          Isso significa resposta rápida, decisão sem intermediário e um projeto que não se perde
-          entre departamentos. Você fala comigo do orçamento à entrega &mdash; e depois dela também.
+          <strong class="about__highlight">Resposta rápida. Decisão sem intermediário.</strong>
         </p>
         <p class="about__p" data-reveal>
           Não prometo número mágico nem resultado da noite pro dia. Prometo trabalho bem feito,
-          prazo combinado e uma marca que fica na memória de quem importa: o seu cliente.
+          prazo combinado e uma marca que fica na memória de quem importa: o seu cliente. No fim,
+          meu objetivo é gerar mais vendas &mdash; atraindo os clientes certos pra você.
         </p>
 
         <div class="about__facts">
-          <div class="fact" data-reveal>
-            <strong>Direto</strong>
-            <span>Você fala comigo, não com atendimento</span>
-          </div>
-          <div class="fact" data-reveal>
-            <strong>Sem terceirização</strong>
-            <span>Quem vende é quem executa</span>
-          </div>
           <div class="fact" data-reveal>
             <strong>Prazo claro</strong>
             <span>Combinado no início, cumprido no fim</span>
@@ -411,7 +402,7 @@
           &ldquo;Marca boa não é a mais barata nem a mais barulhenta.
           É a que o cliente lembra quando finalmente decide comprar.&rdquo;
         </p>
-        <p class="about__sign">Matheus Almeida Vieira <span>&middot; MA Growth</span></p>
+        <p class="about__sign">Matheus Almeida <span>&middot; MA Growth</span></p>
       </aside>
     </div>
   </div>
@@ -446,8 +437,8 @@
   <div class="shell footer__inner">
     <a href="#top" class="nav__logo footer__logo">MA<span>GROWTH</span></a>
     <nav class="footer__links" aria-label="Rodapé">
-      <a href="#servicos">Serviços</a>
       <a href="#portfolio">Portfólio</a>
+      <a href="#servicos">Serviços</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
@@ -541,6 +532,7 @@
   <div class="device-modal__panel" data-panel="phone" id="panelPhone" hidden>
     <p class="carousel__eyebrow">&mdash; Vídeos/Anúncios (com IA) &mdash;</p>
     <div class="device-modal__phone-wrap">
+      <a class="device-modal__phone-cta" href="#servicos">Quero algo<br>semelhante</a>
       <div class="device-modal__phone">
         <div class="device-modal__phone-screen" id="phoneScreen">
           <div class="device-modal__phone-slide">
