@@ -272,7 +272,7 @@
     <div class="showcase" data-reveal>
       <p class="showcase__label">01 &mdash; Serviços</p>
       <ul class="hoverlist" id="hoverList">
-        <li class="hoverlist__item" data-mock="hero">
+        <li class="hoverlist__item" data-mock="hero" data-device="mac" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__text" data-text="Sites &amp; Landing Pages">Sites &amp; Landing Pages</span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
@@ -463,6 +463,26 @@
     <p class="footer__copy">&copy; <span id="year">2026</span> MA Growth &middot; Matheus Almeida Vieira</p>
   </div>
 </footer>
+
+<!-- ══════════ MODAL: mockup de laptop com o vídeo do projeto ══════════ -->
+<!-- TODO Matheus: trocar o placeholder por assets/video/landing-demo.mp4 -->
+
+<div class="device-modal" id="deviceModal" aria-hidden="true" role="dialog" aria-label="Prévia do projeto">
+  <button class="device-modal__close" id="deviceModalClose" type="button" aria-label="Fechar">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
+  <div class="device-modal__mac">
+    <div class="device-modal__notch" aria-hidden="true"></div>
+    <div class="device-modal__screen">
+      <video class="device-modal__video" id="deviceModalVideo" muted loop playsinline preload="none"></video>
+      <div class="device-modal__placeholder" id="deviceModalPlaceholder">
+        <span>Vídeo do projeto em breve</span>
+      </div>
+    </div>
+  </div>
+  <div class="device-modal__base" aria-hidden="true"></div>
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>

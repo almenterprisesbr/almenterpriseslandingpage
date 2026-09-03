@@ -640,7 +640,56 @@
   })();
 
   /* ==========================================================
-     8. GALERIA DE POSTS — pilha que abre em leque
+     8. PRÉVIA EM TELA CHEIA — mockup de laptop com o vídeo do projeto
+     Abre ao clicar no item "Sites & Landing Pages" da lista de serviços.
+     ========================================================== */
+
+  (function deviceModal() {
+    var modal = document.getElementById("deviceModal");
+    var closeBtn = document.getElementById("deviceModalClose");
+    var video = document.getElementById("deviceModalVideo");
+    var placeholder = document.getElementById("deviceModalPlaceholder");
+    var triggers = document.querySelectorAll(".hoverlist__item[data-device]");
+    if (!modal || !triggers.length) return;
+
+    var hasVideo = !!(video && video.querySelector("source, [src]")) || !!(video && video.getAttribute("src"));
+
+    function open() {
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.documentElement.style.overflow = "hidden";
+      if (hasVideo && video) video.play().catch(function () {});
+    }
+
+    function close() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.documentElement.style.overflow = "";
+      if (video) video.pause();
+    }
+
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener("click", open);
+      trigger.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener("click", close);
+
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) close();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) close();
+    });
+
+    if (placeholder) placeholder.hidden = hasVideo;
+  })();
+
+  /* ==========================================================
+     9. GALERIA DE POSTS — pilha que abre em leque
      ========================================================== */
 
   (function postGallery() {
@@ -655,7 +704,7 @@
   })();
 
   /* ==========================================================
-     9. FERRAMENTAS — carrossel de ícones das ferramentas usadas
+     10. FERRAMENTAS — carrossel de ícones das ferramentas usadas
      ========================================================== */
 
   (function toolsMarquee() {
@@ -715,7 +764,7 @@
   })();
 
   /* ==========================================================
-     10. Ano no rodapé
+     11. Ano no rodapé
      ========================================================== */
 
   var year = document.getElementById("year");
