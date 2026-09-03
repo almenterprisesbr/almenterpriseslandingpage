@@ -22,6 +22,12 @@
   var introActive = false;
   var startGrid = function () {}; // preenchido pelo module 1
 
+  /* 0 a 1: o quanto o visitante já rolou dentro da hero. Usado pelo grid
+     (module 1) pra "acender" a malha conforme a pessoa rola, criando a
+     animação de scroll pedida — e volta a 0 assim que a hero sai da tela,
+     pra não ficar queimado nas seções de baixo (module 5 escreve aqui). */
+  var heroScrollProgress = 0;
+
   /* ==========================================================
      0. INTRO — vídeo cinematográfico de abertura
      Roda em toda visita. Some ao terminar, revelando a hero por
@@ -208,6 +214,11 @@
     function draw(now) {
       ctx.clearRect(0, 0, W, H);
 
+      // a malha "acende" sozinha conforme a pessoa rola a hero, além de
+      // reagir ao cursor — é a animação de scroll pedida, usando o que já
+      // existe em vez de mais um elemento novo pra pesar na página
+      var scrollBoost = heroScrollProgress * 0.55;
+
       // textura de pontos estática — dá "profundidade" sem pesar
       ctx.fillStyle = "rgba(242,242,244,0.016)";
       for (var dx = DOT_SPACING / 2; dx < W; dx += DOT_SPACING) {
@@ -240,7 +251,7 @@
 
       function segment(p1, p2) {
         var avg = (p1.p + p2.p) / 2;
-        var t = avg * avg * (3 - 2 * avg); // smoothstep
+        var t = Math.max(avg * avg * (3 - 2 * avg), scrollBoost); // smoothstep + boost de scroll
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
@@ -261,7 +272,7 @@
       for (var r3 = 0; r3 < rows; r3++) {
         for (var c3 = 0; c3 < cols; c3++) {
           var p = pts[r3][c3];
-          var t3 = p.p * p.p * (3 - 2 * p.p);
+          var t3 = Math.max(p.p * p.p * (3 - 2 * p.p), scrollBoost);
           var rad = lerpN(NODE_R_BASE, NODE_R_ACTIVE, t3);
 
           if (t3 > 0.35) {
@@ -300,7 +311,9 @@
       mouse.y = lerpN(mouse.y, target.y, LERP);
 
       // Se nada está acontecendo, para de desenhar (economiza bateria).
-      if (moved < 0.3 && ripples.length === 0) {
+      // Enquanto a hero está sendo rolada, o boost de scroll conta como
+      // "acontecendo" pra malha continuar redesenhando e acompanhar o scroll.
+      if (moved < 0.3 && ripples.length === 0 && heroScrollProgress === 0) {
         idleFrames++;
       } else {
         idleFrames = 0;
@@ -372,14 +385,12 @@
      o efeito de recência: a última coisa vista é a que mais fica. */
   (function typing() {
     var el = document.getElementById("heroTyped");
-    var caret = document.getElementById("heroCaret");
     if (!el) return;
 
     var phrases = ["ser visto.", "ser lembrado.", "ser escolhido."];
 
     if (reduceMotion) {
       el.textContent = phrases[phrases.length - 1];
-      if (caret) caret.style.display = "none";
       return;
     }
 
@@ -390,23 +401,13 @@
 
     var idx = 0, char = 0, erasing = false;
 
-    function settle() {
-      if (caret) {
-        // usa o style inline (não a classe) porque .hero__caret já define
-        // display: inline-block, que teria prioridade sobre o atributo hidden
-        setTimeout(function () { caret.style.display = "none"; }, 1400);
-      }
-    }
-
     function tick() {
       var full = phrases[idx];
-      var isLast = idx === phrases.length - 1;
 
       if (!erasing) {
         char++;
         el.textContent = full.slice(0, char);
         if (char === full.length) {
-          if (isLast) return settle();
           erasing = true;
           return setTimeout(tick, HOLD);
         }
@@ -417,7 +418,7 @@
       el.textContent = full.slice(0, char);
       if (char === 0) {
         erasing = false;
-        idx += 1;
+        idx = (idx + 1) % phrases.length;
         return setTimeout(tick, GAP);
       }
       return setTimeout(tick, ERASE);
@@ -544,6 +545,10 @@
       var rect = wrap.getBoundingClientRect();
       var total = rect.height - window.innerHeight;
       var progress = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 0;
+
+      // acende o grid cinético conforme rola a hero; some assim que ela
+      // sai de vista, pra não ficar queimado no resto da página
+      heroScrollProgress = rect.bottom > 0 ? progress : 0;
 
       // o conteúdo sobe levemente e some — sensação de profundidade
       if (content && !reduceMotion) {
