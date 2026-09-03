@@ -263,68 +263,69 @@
       <p class="eyebrow">Portfólio</p>
       <h2 class="h2">O trabalho fala<br>antes de mim.</h2>
       <p class="section__sub">
-        Uma amostra dos formatos que eu entrego. Quer ver os projetos completos, com contexto
-        e resultado? Me chama que eu mando o material inteiro.
+        Serviços, posts reais e as ferramentas por trás de cada entrega. Quer ver os projetos
+        completos, com contexto e resultado? Me chama que eu mando o material inteiro.
       </p>
     </header>
 
-    <div class="work">
-      <!-- TODO Matheus: trocar os previews por prints reais dos projetos (assets/img/) -->
-      <article class="work__item" data-reveal>
-        <div class="work__frame">
-          <div class="work__chrome" aria-hidden="true"><i></i><i></i><i></i></div>
-          <div class="work__canvas work__canvas--a" aria-hidden="true">
-            <div class="mock mock--hero"><span></span><em></em><b></b></div>
-          </div>
-        </div>
-        <div class="work__meta">
-          <p class="work__tag">Landing page &middot; Serviço local</p>
-          <h3>Página única focada em uma ação</h3>
-          <p>Estrutura curta, prova visual e um único caminho: chamar no WhatsApp.</p>
-        </div>
-      </article>
+    <!-- Caixa 1: Serviços — lista com prévia flutuante no hover -->
+    <div class="showcase" data-reveal>
+      <p class="showcase__label">01 &mdash; Serviços</p>
+      <ul class="hoverlist" id="hoverList">
+        <li class="hoverlist__item" data-mock="hero">
+          <span class="hoverlist__text" data-text="Sites &amp; Landing Pages">Sites &amp; Landing Pages</span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="grid">
+          <span class="hoverlist__text" data-text="Social Media Estratégico">Social Media Estratégico</span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="brand">
+          <span class="hoverlist__text" data-text="Identidade Visual">Identidade Visual</span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="site">
+          <span class="hoverlist__text" data-text="Conteúdo &amp; Copy">Conteúdo &amp; Copy</span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+      </ul>
+      <div class="hoverlist__ghost" id="hoverGhost" aria-hidden="true">
+        <div class="mock mock--hero"><span></span><em></em><b></b></div>
+        <div class="mock mock--grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="mock mock--brand"><span></span><em></em></div>
+        <div class="mock mock--site"><span></span><i></i><i></i><b></b></div>
+      </div>
+    </div>
 
-      <article class="work__item" data-reveal>
-        <div class="work__frame">
-          <div class="work__chrome" aria-hidden="true"><i></i><i></i><i></i></div>
-          <div class="work__canvas work__canvas--b" aria-hidden="true">
-            <div class="mock mock--grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
+    <!-- Caixa 2: Galeria de Posts — pilha que abre em leque -->
+    <!-- TODO Matheus: trocar os quadrados por prints reais dos posts (assets/img/) -->
+    <div class="showcase showcase--alt" data-reveal>
+      <p class="showcase__label">02 &mdash; Galeria de posts</p>
+      <div class="folder" id="postFolder">
+        <button class="folder__trigger" id="folderTrigger" type="button" aria-expanded="false" aria-controls="folderStack">
+          <span class="folder__icon" aria-hidden="true"></span>
+          <span class="folder__text">
+            <strong>Ver posts</strong>
+            <small>Toque pra abrir a galeria</small>
+          </span>
+        </button>
+        <div class="folder__stack" id="folderStack">
+          <div class="folder__card"><div class="mock mock--post mock--post-1"></div></div>
+          <div class="folder__card"><div class="mock mock--post mock--post-2"></div></div>
+          <div class="folder__card"><div class="mock mock--post mock--post-3"></div></div>
+          <div class="folder__card"><div class="mock mock--post mock--post-4"></div></div>
+          <div class="folder__card"><div class="mock mock--post mock--post-5"></div></div>
         </div>
-        <div class="work__meta">
-          <p class="work__tag">Social media &middot; Feed completo</p>
-          <h3>Identidade aplicada no conteúdo</h3>
-          <p>Feed com padrão visual reconhecível, para a marca ser identificada antes do nome.</p>
-        </div>
-      </article>
+      </div>
+    </div>
 
-      <article class="work__item" data-reveal>
-        <div class="work__frame">
-          <div class="work__chrome" aria-hidden="true"><i></i><i></i><i></i></div>
-          <div class="work__canvas work__canvas--c" aria-hidden="true">
-            <div class="mock mock--brand"><span></span><em></em></div>
-          </div>
-        </div>
-        <div class="work__meta">
-          <p class="work__tag">Identidade visual &middot; Marca nova</p>
-          <h3>Do símbolo à aplicação</h3>
-          <p>Sistema visual fechado: logo, paleta, tipografia e como usar cada peça.</p>
-        </div>
-      </article>
-
-      <article class="work__item" data-reveal>
-        <div class="work__frame">
-          <div class="work__chrome" aria-hidden="true"><i></i><i></i><i></i></div>
-          <div class="work__canvas work__canvas--d" aria-hidden="true">
-            <div class="mock mock--site"><span></span><i></i><i></i><b></b></div>
-          </div>
-        </div>
-        <div class="work__meta">
-          <p class="work__tag">Site institucional &middot; Multi-página</p>
-          <h3>Presença completa e navegável</h3>
-          <p>Site que apresenta, convence e ainda deixa o contato a um clique de distância.</p>
-        </div>
-      </article>
+    <!-- Caixa 3: Ferramentas — carrossel de ícones -->
+    <div class="showcase showcase--alt" data-reveal>
+      <p class="showcase__label">03 &mdash; Ferramentas</p>
+      <p class="showcase__sub">Tudo isso trabalha junto pra tirar o seu projeto do papel.</p>
+      <div class="marquee marquee--tools" aria-hidden="true">
+        <div class="marquee__track" id="toolsTrack"></div>
+      </div>
     </div>
 
     <div class="work__cta" data-reveal>

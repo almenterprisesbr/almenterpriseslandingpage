@@ -601,7 +601,121 @@
   }
 
   /* ==========================================================
-     7. Ano no rodapé
+     7. SERVIÇOS — lista com prévia flutuante no hover
+     ========================================================== */
+
+  (function hoverShowcase() {
+    var list = document.getElementById("hoverList");
+    var ghost = document.getElementById("hoverGhost");
+    if (!list || !ghost || isTouch) return;
+
+    // move o ghost pra fora do container animado: um ancestral com
+    // transform (mesmo a caminho de "none", em transição) vira o novo
+    // containing block de todo position:fixed dentro dele, e o preview
+    // acaba grudado no lugar errado da tela em vez de seguir o cursor
+    document.body.appendChild(ghost);
+
+    var items = list.querySelectorAll(".hoverlist__item");
+    var mocks = ghost.querySelectorAll(".mock");
+
+    items.forEach(function (item) {
+      var key = item.getAttribute("data-mock");
+
+      item.addEventListener("mouseenter", function () {
+        mocks.forEach(function (m) {
+          m.classList.toggle("is-active", m.classList.contains("mock--" + key));
+        });
+        ghost.classList.add("is-visible");
+      });
+    });
+
+    list.addEventListener("mousemove", function (e) {
+      ghost.style.left = e.clientX + "px";
+      ghost.style.top = e.clientY + "px";
+    }, { passive: true });
+
+    list.addEventListener("mouseleave", function () {
+      ghost.classList.remove("is-visible");
+    });
+  })();
+
+  /* ==========================================================
+     8. GALERIA DE POSTS — pilha que abre em leque
+     ========================================================== */
+
+  (function postGallery() {
+    var folder = document.getElementById("postFolder");
+    var trigger = document.getElementById("folderTrigger");
+    if (!folder || !trigger) return;
+
+    trigger.addEventListener("click", function () {
+      var open = folder.classList.toggle("is-open");
+      trigger.setAttribute("aria-expanded", String(open));
+    });
+  })();
+
+  /* ==========================================================
+     9. FERRAMENTAS — carrossel de ícones das ferramentas usadas
+     ========================================================== */
+
+  (function toolsMarquee() {
+    var track = document.getElementById("toolsTrack");
+    if (!track) return;
+
+    var TOOLS = [
+      { name: "Photoshop", text: "Ps" },
+      { name: "Illustrator", text: "Ai" },
+      { name: "CapCut", svg: '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.1" y2="15.9"/><line x1="14.5" y1="14.5" x2="20" y2="20"/><line x1="8.1" y1="8.1" x2="12" y2="12"/>' },
+      { name: "TikTok", svg: '<path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/>' },
+      { name: "WhatsApp", svg: '<path fill="currentColor" stroke="none" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.4 5.15L2 22l5.09-1.5a9.87 9.87 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.02.89.9-2.94-.2-.31a8.22 8.22 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24z"/>' },
+      { name: "Facebook", text: "f" },
+      { name: "Lovable", svg: '<path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5c2-.3 3.5.8 4.5 2 1-1.2 2.5-2.3 4.5-2 3.5.5 5 4 3.5 7.5C19 16.65 12 21 12 21z"/>' },
+      { name: "Supabase", svg: '<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/>' },
+      { name: "ChatGPT", svg: '<path d="M12 2v20M4.2 7l15.6 10M4.2 17L19.8 7"/>' },
+      { name: "Gemini", svg: '<path d="M12 3c.5 4 2.5 6 6.5 6.5-4 .5-6 2.5-6.5 6.5-.5-4-2.5-6-6.5-6.5C9.5 9 11.5 7 12 3z"/>' },
+      { name: "Flow", svg: '<path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/>' },
+      { name: "Claude", svg: '<path d="M12 3v4M12 17v4M4.2 7l3 2M16.8 15l3 2M3 12h4M17 12h4M4.2 17l3-2M16.8 9l3-2"/>' },
+      { name: "Claude Code", svg: '<path d="M8 5 3 12l5 7M16 5l5 7-5 7"/>' },
+      { name: "Instagram", svg: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>' },
+      { name: "Telegram", svg: '<path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/>' },
+      { name: "YouTube", svg: '<rect x="2" y="6" width="20" height="12" rx="4"/><path fill="currentColor" stroke="none" d="M10 9l6 3-6 3z"/>' },
+      { name: "YT Shorts", svg: '<rect x="6" y="2" width="12" height="20" rx="5"/><path fill="currentColor" stroke="none" d="M13 6 9 13h3l-1 5 5-8h-3l1-4z"/>' },
+      { name: "Shopee", svg: '<path d="M6 8h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>' },
+      { name: "Mercado Livre", svg: '<circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"/><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/>' }
+    ];
+
+    function buildChip(tool) {
+      var chip = document.createElement("div");
+      chip.className = "tool-chip";
+
+      var icon = document.createElement("div");
+      icon.className = "tool-chip__icon";
+      if (tool.text) {
+        icon.textContent = tool.text;
+      } else {
+        icon.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" ' +
+          'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + tool.svg + "</svg>";
+      }
+
+      var name = document.createElement("span");
+      name.className = "tool-chip__name";
+      name.textContent = tool.name;
+
+      chip.appendChild(icon);
+      chip.appendChild(name);
+      return chip;
+    }
+
+    for (var g = 0; g < 2; g++) {
+      var group = document.createElement("div");
+      group.className = "marquee__group";
+      TOOLS.forEach(function (tool) { group.appendChild(buildChip(tool)); });
+      track.appendChild(group);
+    }
+  })();
+
+  /* ==========================================================
+     10. Ano no rodapé
      ========================================================== */
 
   var year = document.getElementById("year");
