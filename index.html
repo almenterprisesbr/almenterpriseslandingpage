@@ -264,9 +264,10 @@
       <h2 class="h2">O trabalho fala<br>antes de mim.</h2>
       <p class="section__sub">
         Uma amostra de como eu trabalho: os serviços, o formato dos posts e as ferramentas por
-        trás de cada entrega. Quer ver projetos completos, com contexto e resultado? Me chama
-        que eu mando o material inteiro.
+        trás de cada entrega.
       </p>
+      <p class="showcase__package">Ecossistema de Vendas MA Growth <span>(PACOTE)</span></p>
+      <a class="btn btn--ghost showcase__cta" href="#servicos">Quero algo semelhante</a>
     </header>
 
     <!-- Caixa 1: Serviços — lista com prévia flutuante no hover -->
@@ -274,19 +275,31 @@
       <p class="showcase__label">01 &mdash; Serviços</p>
       <ul class="hoverlist" id="hoverList">
         <li class="hoverlist__item" data-mock="hero" data-device="mac" tabindex="0" role="button" aria-haspopup="dialog">
-          <span class="hoverlist__text" data-text="Sites &amp; Landing Pages">Sites &amp; Landing Pages</span>
+          <span class="hoverlist__main">
+            <span class="hoverlist__text" data-text="Sites &amp; Landing Pages">Sites &amp; Landing Pages</span>
+            <span class="hoverlist__hint">Clique para ver mais</span>
+          </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
         <li class="hoverlist__item" data-mock="grid" data-device="carousel" tabindex="0" role="button" aria-haspopup="dialog">
-          <span class="hoverlist__text" data-text="Social Media Estratégico">Social Media Estratégico</span>
+          <span class="hoverlist__main">
+            <span class="hoverlist__text" data-text="Social Media Estratégico">Social Media Estratégico</span>
+            <span class="hoverlist__hint">Clique para ver mais</span>
+          </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
         <li class="hoverlist__item" data-mock="brand" data-device="tabs" tabindex="0" role="button" aria-haspopup="dialog">
-          <span class="hoverlist__text" data-text="Identidade Visual">Identidade Visual</span>
+          <span class="hoverlist__main">
+            <span class="hoverlist__text" data-text="Identidade Visual">Identidade Visual</span>
+            <span class="hoverlist__hint">Clique para ver mais</span>
+          </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
-        <li class="hoverlist__item" data-mock="video">
-          <span class="hoverlist__text" data-text="Vídeos/Anúncios com IA">Vídeos/Anúncios com IA</span>
+        <li class="hoverlist__item" data-mock="video" data-device="phone" tabindex="0" role="button" aria-haspopup="dialog">
+          <span class="hoverlist__main">
+            <span class="hoverlist__text" data-text="Vídeos/Anúncios (com IA)">Vídeos/Anúncios (com IA)</span>
+            <span class="hoverlist__hint">Clique para ver mais</span>
+          </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
       </ul>
@@ -298,31 +311,9 @@
       </div>
     </div>
 
-    <!-- Caixa 2: Galeria de Posts — pilha que abre em leque -->
-    <!-- TODO Matheus: trocar os quadrados por prints reais dos posts (assets/img/) -->
+    <!-- Caixa 2: Ferramentas — carrossel de ícones -->
     <div class="showcase showcase--alt" data-reveal>
-      <p class="showcase__label">02 &mdash; Galeria de posts</p>
-      <div class="folder" id="postFolder">
-        <button class="folder__trigger" id="folderTrigger" type="button" aria-expanded="false" aria-controls="folderStack">
-          <span class="folder__icon" aria-hidden="true"></span>
-          <span class="folder__text">
-            <strong>Ver posts</strong>
-            <small>Toque pra abrir a galeria</small>
-          </span>
-        </button>
-        <div class="folder__stack" id="folderStack">
-          <div class="folder__card"><div class="mock mock--post mock--post-1"></div></div>
-          <div class="folder__card"><div class="mock mock--post mock--post-2"></div></div>
-          <div class="folder__card"><div class="mock mock--post mock--post-3"></div></div>
-          <div class="folder__card"><div class="mock mock--post mock--post-4"></div></div>
-          <div class="folder__card"><div class="mock mock--post mock--post-5"></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Caixa 3: Ferramentas — carrossel de ícones -->
-    <div class="showcase showcase--alt" data-reveal>
-      <p class="showcase__label">03 &mdash; Ferramentas</p>
+      <p class="showcase__label">02 &mdash; Ferramentas</p>
       <p class="showcase__sub">Tudo isso trabalha junto pra tirar o seu projeto do papel.</p>
       <div class="marquee marquee--tools" aria-hidden="true">
         <div class="marquee__track" id="toolsTrack"></div>
@@ -542,6 +533,31 @@
             <p>Ícones, texturas e formas de apoio que reforçam a identidade em qualquer peça.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TODO Matheus: trocar os placeholders por vídeos reais (curtos/anúncios) -->
+  <div class="device-modal__panel" data-panel="phone" id="panelPhone" hidden>
+    <p class="carousel__eyebrow">&mdash; Vídeos/Anúncios (com IA) &mdash;</p>
+    <div class="device-modal__phone-wrap">
+      <div class="device-modal__phone">
+        <div class="device-modal__phone-screen" id="phoneScreen">
+          <div class="device-modal__phone-slide">
+            <div class="device-modal__phone-placeholder"><span>Vídeo 1 em breve</span></div>
+          </div>
+          <div class="device-modal__phone-slide">
+            <div class="device-modal__phone-placeholder"><span>Vídeo 2 em breve</span></div>
+          </div>
+          <div class="device-modal__phone-slide">
+            <div class="device-modal__phone-placeholder"><span>Vídeo 3 em breve</span></div>
+          </div>
+        </div>
+        <div class="device-modal__phone-notch" aria-hidden="true"></div>
+      </div>
+      <div class="device-modal__phone-hint" id="phoneHint">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        <span>Role para o próximo</span>
       </div>
     </div>
   </div>

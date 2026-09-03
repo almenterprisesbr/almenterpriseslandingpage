@@ -695,6 +695,14 @@
     });
 
     if (placeholder) placeholder.hidden = hasVideo;
+
+    var phoneScreen = document.getElementById("phoneScreen");
+    var phoneHint = document.getElementById("phoneHint");
+    if (phoneScreen && phoneHint) {
+      phoneScreen.addEventListener("scroll", function () {
+        phoneHint.classList.add("is-dismissed");
+      }, { once: true, passive: true });
+    }
   })();
 
   /* ==========================================================
@@ -775,22 +783,7 @@
   })();
 
   /* ==========================================================
-     11. GALERIA DE POSTS — pilha que abre em leque
-     ========================================================== */
-
-  (function postGallery() {
-    var folder = document.getElementById("postFolder");
-    var trigger = document.getElementById("folderTrigger");
-    if (!folder || !trigger) return;
-
-    trigger.addEventListener("click", function () {
-      var open = folder.classList.toggle("is-open");
-      trigger.setAttribute("aria-expanded", String(open));
-    });
-  })();
-
-  /* ==========================================================
-     12. FERRAMENTAS — carrossel de ícones das ferramentas usadas
+     11. FERRAMENTAS — carrossel de ícones das ferramentas usadas
      ========================================================== */
 
   (function toolsMarquee() {
@@ -850,7 +843,7 @@
   })();
 
   /* ==========================================================
-     13. Ano no rodapé
+     12. Ano no rodapé
      ========================================================== */
 
   var year = document.getElementById("year");
