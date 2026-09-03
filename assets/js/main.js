@@ -111,17 +111,21 @@
     var ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    /* --- Ajustes de intensidade (o "volume" do efeito) --- */
+    /* --- Ajustes de intensidade (o "volume" do efeito) ---
+       Reduzido depois do vídeo de abertura: logo após um momento de
+       alta atenção (o vídeo), menos estímulo simultâneo compete com
+       o headline e o CTA (heurística de carga cognitiva / hierarquia
+       visual, Nielsen Norman Group). */
     var CELL          = 74;    // espaçamento da malha: maior = mais limpo
-    var INFLUENCE     = 240;   // raio de alcance do cursor
-    var MAX_WARP      = 17;    // o quanto a malha deforma
+    var INFLUENCE     = 200;   // raio de alcance do cursor
+    var MAX_WARP      = 12;    // o quanto a malha deforma
     var LERP          = 0.085; // suavidade do cursor
     var DOT_SPACING   = 34;
 
     var LINE_BASE   = { r: 242, g: 242, b: 244, a: 0.026 }; // quase invisível
-    var LINE_ACTIVE = { r: 255, g: 108, b: 116, a: 0.30  }; // acende suave
+    var LINE_ACTIVE = { r: 255, g: 108, b: 116, a: 0.20  }; // acende suave
     var NODE_BASE   = { r: 242, g: 242, b: 244, a: 0.055 };
-    var NODE_ACTIVE = { r: 255, g: 120, b: 128, a: 0.55  };
+    var NODE_ACTIVE = { r: 255, g: 120, b: 128, a: 0.40  };
     var GLOW_RGB    = "227,6,19";
 
     var NODE_R_BASE   = 1.0;
@@ -263,7 +267,7 @@
           if (t3 > 0.35) {
             var gr = rad + lerpN(0, 7, (t3 - 0.35) / 0.65);
             var grd = ctx.createRadialGradient(p.x, p.y, rad * 0.5, p.x, p.y, gr);
-            grd.addColorStop(0, "rgba(" + GLOW_RGB + "," + (t3 * 0.16).toFixed(3) + ")");
+            grd.addColorStop(0, "rgba(" + GLOW_RGB + "," + (t3 * 0.10).toFixed(3) + ")");
             grd.addColorStop(1, "rgba(" + GLOW_RGB + ",0)");
             ctx.beginPath();
             ctx.arc(p.x, p.y, gr, 0, Math.PI * 2);
@@ -360,14 +364,22 @@
      2. TYPING — headline que digita as três frases
      ========================================================== */
 
+  /* Roda uma vez e assenta na última frase, sem ficar girando pra sempre.
+     Um carrossel/texto que troca sozinho sem parar tira do visitante a
+     chance de ler no próprio ritmo e prejudica a retenção da mensagem
+     (Nielsen Norman Group, "Auto-Forwarding Carousels... Reduce
+     Visibility"). Terminar parado em "ser escolhido." também aproveita
+     o efeito de recência: a última coisa vista é a que mais fica. */
   (function typing() {
     var el = document.getElementById("heroTyped");
+    var caret = document.getElementById("heroCaret");
     if (!el) return;
 
     var phrases = ["ser visto.", "ser lembrado.", "ser escolhido."];
 
     if (reduceMotion) {
-      el.textContent = "ser escolhido.";
+      el.textContent = phrases[phrases.length - 1];
+      if (caret) caret.style.display = "none";
       return;
     }
 
@@ -378,13 +390,23 @@
 
     var idx = 0, char = 0, erasing = false;
 
+    function settle() {
+      if (caret) {
+        // usa o style inline (não a classe) porque .hero__caret já define
+        // display: inline-block, que teria prioridade sobre o atributo hidden
+        setTimeout(function () { caret.style.display = "none"; }, 1400);
+      }
+    }
+
     function tick() {
       var full = phrases[idx];
+      var isLast = idx === phrases.length - 1;
 
       if (!erasing) {
         char++;
         el.textContent = full.slice(0, char);
         if (char === full.length) {
+          if (isLast) return settle();
           erasing = true;
           return setTimeout(tick, HOLD);
         }
@@ -395,7 +417,7 @@
       el.textContent = full.slice(0, char);
       if (char === 0) {
         erasing = false;
-        idx = (idx + 1) % phrases.length;
+        idx += 1;
         return setTimeout(tick, GAP);
       }
       return setTimeout(tick, ERASE);
