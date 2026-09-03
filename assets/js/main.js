@@ -700,8 +700,9 @@
     var phoneHint = document.getElementById("phoneHint");
     if (phoneScreen && phoneHint) {
       phoneScreen.addEventListener("scroll", function () {
-        phoneHint.classList.add("is-dismissed");
-      }, { once: true, passive: true });
+        var atLast = phoneScreen.scrollTop >= phoneScreen.scrollHeight - phoneScreen.clientHeight - 4;
+        phoneHint.classList.toggle("is-dismissed", atLast);
+      }, { passive: true });
     }
   })();
 

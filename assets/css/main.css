@@ -1123,14 +1123,15 @@ strong { font-weight: 600; color: var(--white); }
 /* -- modal: mockup de celular com feed vertical de vídeos -- */
 
 .device-modal__phone-wrap {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 28px;
+  justify-content: center;
 }
 
 .device-modal__phone {
   position: relative;
-  width: min(280px, 58vw);
+  width: min(320px, 62vw);
   aspect-ratio: 9 / 19.5;
   background: #101012;
   border: 2px solid #2c2c30;
@@ -1190,10 +1191,15 @@ strong { font-weight: 600; color: var(--white); }
 }
 
 .device-modal__phone-hint {
+  position: absolute;
+  left: calc(50% + min(160px, 31vw) + 24px);
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  width: 70px;
   color: var(--gray-dim);
   font-family: var(--font-mono);
   font-size: 11px;
@@ -1212,8 +1218,19 @@ strong { font-weight: 600; color: var(--white); }
   50%      { transform: translateY(6px); }
 }
 
-@media (max-width: 640px) {
-  .device-modal__phone-wrap { flex-direction: column-reverse; gap: 14px; }
+@media (max-width: 900px) {
+  .device-modal__phone-hint {
+    left: 50%;
+    top: auto;
+    bottom: -46px;
+    transform: translateX(-50%);
+    flex-direction: row;
+  }
+  .device-modal__phone-hint svg { animation: phoneHintBounceX 1.6s ease-in-out infinite; }
+  @keyframes phoneHintBounceX {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(4px); }
+  }
 }
 
 /* -- modal: carrossel de posts -- */
