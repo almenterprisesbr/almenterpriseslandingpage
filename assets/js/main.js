@@ -649,16 +649,24 @@
     var closeBtn = document.getElementById("deviceModalClose");
     var video = document.getElementById("deviceModalVideo");
     var placeholder = document.getElementById("deviceModalPlaceholder");
+    var panels = modal ? modal.querySelectorAll(".device-modal__panel") : [];
     var triggers = document.querySelectorAll(".hoverlist__item[data-device]");
     if (!modal || !triggers.length) return;
 
-    var hasVideo = !!(video && video.querySelector("source, [src]")) || !!(video && video.getAttribute("src"));
+    var hasVideo = !!(video && video.getAttribute("src"));
 
-    function open() {
+    function showPanel(name) {
+      panels.forEach(function (panel) {
+        panel.hidden = panel.getAttribute("data-panel") !== name;
+      });
+    }
+
+    function open(deviceType) {
+      showPanel(deviceType);
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.documentElement.style.overflow = "hidden";
-      if (hasVideo && video) video.play().catch(function () {});
+      if (deviceType === "mac" && hasVideo && video) video.play().catch(function () {});
     }
 
     function close() {
@@ -669,9 +677,10 @@
     }
 
     triggers.forEach(function (trigger) {
-      trigger.addEventListener("click", open);
+      var deviceType = trigger.getAttribute("data-device");
+      trigger.addEventListener("click", function () { open(deviceType); });
       trigger.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(deviceType); }
       });
     });
 
@@ -689,7 +698,57 @@
   })();
 
   /* ==========================================================
-     9. GALERIA DE POSTS — pilha que abre em leque
+     9. CARROSSEL DE POSTS — dentro do modal, painel "carousel"
+     ========================================================== */
+
+  (function postsCarousel() {
+    var track = document.getElementById("carouselTrack");
+    var dotsWrap = document.getElementById("carouselDots");
+    var prevBtn = document.getElementById("carouselPrev");
+    var nextBtn = document.getElementById("carouselNext");
+    if (!track || !dotsWrap) return;
+
+    var slides = track.querySelectorAll(".carousel__slide");
+    var count = slides.length;
+    var active = 0;
+
+    for (var i = 0; i < count; i++) {
+      (function (index) {
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "carousel__dot";
+        dot.setAttribute("aria-label", "Ir para o post " + (index + 1));
+        dot.addEventListener("click", function () { goTo(index); });
+        dotsWrap.appendChild(dot);
+      })(i);
+    }
+    var dots = dotsWrap.querySelectorAll(".carousel__dot");
+
+    function render() {
+      slides.forEach(function (slide, index) {
+        var raw = index - active;
+        if (raw > count / 2) raw -= count;
+        if (raw < -count / 2) raw += count;
+        slide.style.setProperty("--offset", raw);
+        slide.style.setProperty("--dist", Math.min(Math.abs(raw), 3));
+        slide.setAttribute("data-active", raw === 0 ? "true" : "false");
+      });
+      dots.forEach(function (dot, index) { dot.classList.toggle("is-active", index === active); });
+    }
+
+    function goTo(index) {
+      active = ((index % count) + count) % count;
+      render();
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(active - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(active + 1); });
+
+    render();
+  })();
+
+  /* ==========================================================
+     10. GALERIA DE POSTS — pilha que abre em leque
      ========================================================== */
 
   (function postGallery() {
@@ -704,7 +763,7 @@
   })();
 
   /* ==========================================================
-     10. FERRAMENTAS — carrossel de ícones das ferramentas usadas
+     11. FERRAMENTAS — carrossel de ícones das ferramentas usadas
      ========================================================== */
 
   (function toolsMarquee() {
@@ -764,7 +823,7 @@
   })();
 
   /* ==========================================================
-     11. Ano no rodapé
+     12. Ano no rodapé
      ========================================================== */
 
   var year = document.getElementById("year");
