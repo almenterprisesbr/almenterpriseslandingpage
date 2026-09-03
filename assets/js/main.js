@@ -1,6 +1,6 @@
 /* ============================================================
    MA GROWTH — main.js
-   Grid cinético + typing + reveals + navegação
+   Intro em vídeo + grid cinético + reveals + navegação
    Sem dependências externas.
    ============================================================ */
 
@@ -17,10 +17,15 @@
     for (var i = 0; i < items.length; i++) items[i].classList.add("is-visible");
   }
 
+  /* true enquanto o vídeo de intro está tocando: pausa o grid cinético
+     (module 1) pra dar o motor inteiro pro vídeo, sem disputa de CPU/GPU */
+  var introActive = false;
+  var startGrid = function () {}; // preenchido pelo module 1
+
   /* ==========================================================
      0. INTRO — vídeo cinematográfico de abertura
-     Roda uma vez por sessão. Some ao terminar, revelando a hero
-     por baixo já em movimento (fade + subida).
+     Roda em toda visita. Some ao terminar, revelando a hero por
+     baixo já em movimento (fade + subida).
      ========================================================== */
 
   (function introVideo() {
@@ -31,18 +36,25 @@
     var playBtn = document.getElementById("introPlay");
     if (!overlay || !video) { revealHero(); return; }
 
-    var SESSION_KEY = "maGrowthIntroPlayed";
-    var alreadyPlayed = false;
-    try { alreadyPlayed = sessionStorage.getItem(SESSION_KEY) === "1"; } catch (e) {}
-
     var canPlayMp4 = !!(video.canPlayType && video.canPlayType("video/mp4"));
 
-    if (reduceMotion || alreadyPlayed || !canPlayMp4) {
+    if (reduceMotion || !canPlayMp4) {
       overlay.hidden = true;
       revealHero();
       return;
     }
 
+    /* recorte vertical dedicado pro celular: o corte central do vídeo
+       original (16:9) fica apertado demais numa tela de celular */
+    var isMobileViewport = window.matchMedia("(max-width: 640px)").matches;
+    video.poster = isMobileViewport
+      ? "assets/img/intro-poster-mobile.jpg"
+      : "assets/img/intro-poster.jpg";
+    video.src = isMobileViewport
+      ? "assets/video/intro-mobile.mp4"
+      : "assets/video/intro.mp4";
+
+    introActive = true;
     document.documentElement.style.overflow = "hidden";
 
     var done = false;
@@ -51,13 +63,15 @@
       done = true;
       overlay.classList.add("is-done");
       document.documentElement.style.overflow = "";
-      try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (e) {}
+      introActive = false;
+      startGrid();
       revealHero();
       video.pause();
       setTimeout(function () { overlay.hidden = true; }, 1000);
     }
 
     video.addEventListener("ended", finish);
+    video.addEventListener("error", finish);
     skipBtn.addEventListener("click", finish);
 
     soundBtn.addEventListener("click", function () {
@@ -332,65 +346,18 @@
     }, { passive: true });
 
     document.addEventListener("visibilitychange", function () {
-      if (document.hidden) stop(); else start();
+      if (document.hidden) stop(); else if (!introActive) start();
     });
 
     // desenha um primeiro quadro e revela o canvas
     draw(performance.now());
     canvas.classList.add("is-ready");
-    if (!reduceMotion) start();
+    startGrid = start;
+    if (!reduceMotion && !introActive) start();
   })();
 
   /* ==========================================================
-     2. TYPING — headline que digita as três frases
-     ========================================================== */
-
-  (function typing() {
-    var el = document.getElementById("heroTyped");
-    if (!el) return;
-
-    var phrases = ["ser visto.", "ser lembrado.", "ser escolhido."];
-
-    if (reduceMotion) {
-      el.textContent = "ser escolhido.";
-      return;
-    }
-
-    var TYPE = 55;    // ms por caractere ao escrever
-    var ERASE = 28;   // ms por caractere ao apagar
-    var HOLD = 1700;  // pausa com a frase completa
-    var GAP = 320;    // pausa antes de escrever a próxima
-
-    var idx = 0, char = 0, erasing = false;
-
-    function tick() {
-      var full = phrases[idx];
-
-      if (!erasing) {
-        char++;
-        el.textContent = full.slice(0, char);
-        if (char === full.length) {
-          erasing = true;
-          return setTimeout(tick, HOLD);
-        }
-        return setTimeout(tick, TYPE);
-      }
-
-      char--;
-      el.textContent = full.slice(0, char);
-      if (char === 0) {
-        erasing = false;
-        idx = (idx + 1) % phrases.length;
-        return setTimeout(tick, GAP);
-      }
-      return setTimeout(tick, ERASE);
-    }
-
-    setTimeout(tick, 700);
-  })();
-
-  /* ==========================================================
-     3. NAV — fundo ao rolar, link ativo, menu mobile
+     2. NAV — fundo ao rolar, link ativo, menu mobile
      ========================================================== */
 
   var nav = document.getElementById("nav");
@@ -462,7 +429,7 @@
   })();
 
   /* ==========================================================
-     4. REVEAL — entrada dos elementos ao rolar
+     3. REVEAL — entrada dos elementos ao rolar
      ========================================================== */
 
   (function reveal() {
@@ -491,7 +458,7 @@
   })();
 
   /* ==========================================================
-     5. HERO — legendas e parallax durante o scroll
+     4. HERO — legendas e parallax durante o scroll
      ========================================================== */
 
   (function heroScroll() {
@@ -545,7 +512,7 @@
   })();
 
   /* ==========================================================
-     6. CARDS — brilho que acompanha o cursor
+     5. CARDS — brilho que acompanha o cursor
      ========================================================== */
 
   if (!isTouch) {
@@ -559,7 +526,7 @@
   }
 
   /* ==========================================================
-     7. Ano no rodapé
+     6. Ano no rodapé
      ========================================================== */
 
   var year = document.getElementById("year");
