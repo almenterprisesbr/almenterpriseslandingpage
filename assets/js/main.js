@@ -1,6 +1,6 @@
 /* ============================================================
    MA GROWTH — main.js
-   Intro em vídeo + grid cinético + reveals + navegação
+   Intro em vídeo + grid cinético + typing + reveals + navegação
    Sem dependências externas.
    ============================================================ */
 
@@ -357,7 +357,55 @@
   })();
 
   /* ==========================================================
-     2. NAV — fundo ao rolar, link ativo, menu mobile
+     2. TYPING — headline que digita as três frases
+     ========================================================== */
+
+  (function typing() {
+    var el = document.getElementById("heroTyped");
+    if (!el) return;
+
+    var phrases = ["ser visto.", "ser lembrado.", "ser escolhido."];
+
+    if (reduceMotion) {
+      el.textContent = "ser escolhido.";
+      return;
+    }
+
+    var TYPE = 55;    // ms por caractere ao escrever
+    var ERASE = 28;   // ms por caractere ao apagar
+    var HOLD = 1700;  // pausa com a frase completa
+    var GAP = 320;    // pausa antes de escrever a próxima
+
+    var idx = 0, char = 0, erasing = false;
+
+    function tick() {
+      var full = phrases[idx];
+
+      if (!erasing) {
+        char++;
+        el.textContent = full.slice(0, char);
+        if (char === full.length) {
+          erasing = true;
+          return setTimeout(tick, HOLD);
+        }
+        return setTimeout(tick, TYPE);
+      }
+
+      char--;
+      el.textContent = full.slice(0, char);
+      if (char === 0) {
+        erasing = false;
+        idx = (idx + 1) % phrases.length;
+        return setTimeout(tick, GAP);
+      }
+      return setTimeout(tick, ERASE);
+    }
+
+    setTimeout(tick, 700);
+  })();
+
+  /* ==========================================================
+     3. NAV — fundo ao rolar, link ativo, menu mobile
      ========================================================== */
 
   var nav = document.getElementById("nav");
@@ -429,7 +477,7 @@
   })();
 
   /* ==========================================================
-     3. REVEAL — entrada dos elementos ao rolar
+     4. REVEAL — entrada dos elementos ao rolar
      ========================================================== */
 
   (function reveal() {
@@ -458,7 +506,7 @@
   })();
 
   /* ==========================================================
-     4. HERO — legendas e parallax durante o scroll
+     5. HERO — legendas e parallax durante o scroll
      ========================================================== */
 
   (function heroScroll() {
@@ -512,7 +560,7 @@
   })();
 
   /* ==========================================================
-     5. CARDS — brilho que acompanha o cursor
+     6. CARDS — brilho que acompanha o cursor
      ========================================================== */
 
   if (!isTouch) {
@@ -526,7 +574,7 @@
   }
 
   /* ==========================================================
-     6. Ano no rodapé
+     7. Ano no rodapé
      ========================================================== */
 
   var year = document.getElementById("year");
