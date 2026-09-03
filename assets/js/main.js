@@ -601,8 +601,47 @@
   }
 
   /* ==========================================================
-     7. PRÉVIA EM TELA CHEIA — mockup de laptop com o vídeo do projeto
-     Abre ao clicar em uma das pastas de serviço.
+     7. SERVIÇOS — lista com prévia flutuante no hover
+     ========================================================== */
+
+  (function hoverShowcase() {
+    var list = document.getElementById("hoverList");
+    var ghost = document.getElementById("hoverGhost");
+    if (!list || !ghost || isTouch) return;
+
+    // move o ghost pra fora do container animado: um ancestral com
+    // transform (mesmo a caminho de "none", em transição) vira o novo
+    // containing block de todo position:fixed dentro dele, e o preview
+    // acaba grudado no lugar errado da tela em vez de seguir o cursor
+    document.body.appendChild(ghost);
+
+    var items = list.querySelectorAll(".hoverlist__item");
+    var mocks = ghost.querySelectorAll(".mock");
+
+    items.forEach(function (item) {
+      var key = item.getAttribute("data-mock");
+
+      item.addEventListener("mouseenter", function () {
+        mocks.forEach(function (m) {
+          m.classList.toggle("is-active", m.classList.contains("mock--" + key));
+        });
+        ghost.classList.add("is-visible");
+      });
+    });
+
+    list.addEventListener("mousemove", function (e) {
+      ghost.style.left = e.clientX + "px";
+      ghost.style.top = e.clientY + "px";
+    }, { passive: true });
+
+    list.addEventListener("mouseleave", function () {
+      ghost.classList.remove("is-visible");
+    });
+  })();
+
+  /* ==========================================================
+     8. PRÉVIA EM TELA CHEIA — mockup de laptop com o vídeo do projeto
+     Abre ao clicar no item "Sites & Landing Pages" da lista de serviços.
      ========================================================== */
 
   (function deviceModal() {
@@ -611,7 +650,7 @@
     var video = document.getElementById("deviceModalVideo");
     var placeholder = document.getElementById("deviceModalPlaceholder");
     var panels = modal ? modal.querySelectorAll(".device-modal__panel") : [];
-    var triggers = document.querySelectorAll(".svc-folder[data-device]");
+    var triggers = document.querySelectorAll(".hoverlist__item[data-device]");
     if (!modal || !triggers.length) return;
 
     var hasVideo = !!(video && video.getAttribute("src"));
@@ -659,7 +698,7 @@
   })();
 
   /* ==========================================================
-     8. CARROSSEL DE POSTS — dentro do modal, painel "carousel"
+     9. CARROSSEL DE POSTS — dentro do modal, painel "carousel"
      ========================================================== */
 
   (function postsCarousel() {
@@ -709,7 +748,7 @@
   })();
 
   /* ==========================================================
-     9. ABAS DE IDENTIDADE VISUAL — dentro do modal, painel "tabs"
+     10. ABAS DE IDENTIDADE VISUAL — dentro do modal, painel "tabs"
      ========================================================== */
 
   (function identityTabs() {
@@ -736,7 +775,7 @@
   })();
 
   /* ==========================================================
-     10. GALERIA DE POSTS — pilha que abre em leque
+     11. GALERIA DE POSTS — pilha que abre em leque
      ========================================================== */
 
   (function postGallery() {
@@ -751,7 +790,7 @@
   })();
 
   /* ==========================================================
-     11. FERRAMENTAS — carrossel de ícones das ferramentas usadas
+     12. FERRAMENTAS — carrossel de ícones das ferramentas usadas
      ========================================================== */
 
   (function toolsMarquee() {
@@ -811,7 +850,7 @@
   })();
 
   /* ==========================================================
-     12. Ano no rodapé
+     13. Ano no rodapé
      ========================================================== */
 
   var year = document.getElementById("year");

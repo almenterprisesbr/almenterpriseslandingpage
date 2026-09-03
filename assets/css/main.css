@@ -846,77 +846,91 @@ strong { font-weight: 600; color: var(--white); }
   max-width: 480px;
 }
 
-/* -- 01 Serviços: pastas interativas que abrem a prévia de cada entrega -- */
+/* -- 01 Serviços: lista com prévia flutuante no hover -- */
 
-.svc-folders {
+.hoverlist { border-top: 1px solid var(--line); }
+
+.hoverlist__item {
   display: flex;
-  flex-wrap: wrap;
-  gap: clamp(20px, 3vw, 36px);
-}
-
-.svc-folder {
-  flex: 1 1 200px;
-  max-width: 240px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 2px;
+  border-bottom: 1px solid var(--line);
   cursor: pointer;
-  outline: none;
 }
-.svc-folder:not([data-device]) { cursor: default; }
 
-.svc-folder__icon {
+.hoverlist__text {
   position: relative;
-  height: 112px;
-  margin-bottom: 18px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  font-size: clamp(24px, 4.4vw, 48px);
+  color: var(--gray);
+  transition: color .25s ease;
 }
-.svc-folder__icon::before {
-  content: "";
+.hoverlist__item:hover .hoverlist__text { color: var(--white); }
+
+.hoverlist__item:hover .hoverlist__text::before,
+.hoverlist__item:hover .hoverlist__text::after {
+  content: attr(data-text);
   position: absolute;
-  top: 0;
-  left: 8%;
-  width: 42%;
-  height: 18px;
-  border-radius: 8px 8px 0 0;
-  background: linear-gradient(180deg, rgba(var(--red-glow), .34), rgba(var(--red-glow), .18));
-  border: 1px solid rgba(var(--red-glow), .4);
-  border-bottom: none;
+  inset: 0;
+  z-index: -1;
+}
+.hoverlist__item:hover .hoverlist__text::before {
+  color: var(--red);
+  animation: hoverGlitch .5s steps(2) infinite;
+}
+.hoverlist__item:hover .hoverlist__text::after {
+  color: rgba(242, 242, 244, .45);
+  animation: hoverGlitch .5s steps(2) infinite reverse;
+}
+@keyframes hoverGlitch {
+  0%, 100% { transform: translate(-3px, 0); }
+  50%      { transform: translate(3px, 0); }
 }
 
-.svc-folder__body {
-  position: absolute;
-  inset: 14px 0 0 0;
-  border-radius: 4px 16px 16px 16px;
-  background: linear-gradient(160deg, rgba(var(--red-glow), .16), rgba(var(--red-glow), .05));
-  border: 1px solid rgba(var(--red-glow), .32);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .06);
+.hoverlist__arrow {
+  font-size: 20px;
+  color: var(--gray-dim);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity .25s ease, transform .25s ease, color .25s ease;
+  flex-shrink: 0;
+}
+.hoverlist__item:hover .hoverlist__arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--red);
+}
+
+.hoverlist__ghost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 190px;
+  height: 132px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-elev);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, .55);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: transform .35s var(--ease), border-color .3s ease;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-4deg) scale(.92);
+  transition: opacity .2s ease, transform .2s ease;
 }
-.svc-folder__body .mock { transform: scale(.55); transform-origin: center; }
+.hoverlist__ghost.is-visible { opacity: 1; transform: translate(-50%, -50%) rotate(-4deg) scale(1); }
+.hoverlist__ghost .mock { position: absolute; inset: 16px; opacity: 0; transition: opacity .15s ease; }
+.hoverlist__ghost .mock.is-active { opacity: 1; }
 
-.svc-folder__label {
-  display: block;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: -.2px;
-  color: var(--white);
-}
-
-.svc-folder[data-device]:hover .svc-folder__body,
-.svc-folder[data-device]:focus-visible .svc-folder__body {
-  transform: translateY(-8px) scale(1.03);
-  border-color: var(--red);
-}
-.svc-folder[data-device]:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 6px;
-  border-radius: 14px;
-}
-
-@media (max-width: 640px) {
-  .svc-folders { gap: 18px 14px; }
-  .svc-folder { flex: 1 1 calc(50% - 7px); max-width: none; }
+@media (hover: none) {
+  .hoverlist__ghost { display: none; }
 }
 
 /* -- 02 Galeria de posts: pilha que abre em leque -- */
@@ -1040,6 +1054,9 @@ strong { font-weight: 600; color: var(--white); }
   text-align: center;
   white-space: nowrap;
 }
+
+/* item da lista de serviços que abre a prévia em tela cheia */
+.hoverlist__item[data-device] { cursor: pointer; }
 
 /* -- modal: mockup de laptop com o vídeo do projeto -- */
 

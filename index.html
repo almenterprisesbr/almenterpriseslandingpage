@@ -269,42 +269,32 @@
       </p>
     </header>
 
-    <!-- Caixa 1: Serviços — pastas interativas, cada uma abre a prévia da entrega -->
+    <!-- Caixa 1: Serviços — lista com prévia flutuante no hover -->
     <div class="showcase" data-reveal>
       <p class="showcase__label">01 &mdash; Serviços</p>
-      <div class="svc-folders" id="svcFolders">
-        <div class="svc-folder" data-device="mac" tabindex="0" role="button" aria-haspopup="dialog">
-          <div class="svc-folder__icon">
-            <div class="svc-folder__body">
-              <div class="mock mock--hero"><span></span><em></em><b></b></div>
-            </div>
-          </div>
-          <span class="svc-folder__label">Sites &amp; Landing Pages</span>
-        </div>
-        <div class="svc-folder" data-device="carousel" tabindex="0" role="button" aria-haspopup="dialog">
-          <div class="svc-folder__icon">
-            <div class="svc-folder__body">
-              <div class="mock mock--grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            </div>
-          </div>
-          <span class="svc-folder__label">Social Media Estratégico</span>
-        </div>
-        <div class="svc-folder" data-device="tabs" tabindex="0" role="button" aria-haspopup="dialog">
-          <div class="svc-folder__icon">
-            <div class="svc-folder__body">
-              <div class="mock mock--brand"><span></span><em></em></div>
-            </div>
-          </div>
-          <span class="svc-folder__label">Identidade Visual</span>
-        </div>
-        <div class="svc-folder">
-          <div class="svc-folder__icon">
-            <div class="svc-folder__body">
-              <div class="mock mock--video"><span></span></div>
-            </div>
-          </div>
-          <span class="svc-folder__label">Vídeos/Anúncios com IA</span>
-        </div>
+      <ul class="hoverlist" id="hoverList">
+        <li class="hoverlist__item" data-mock="hero" data-device="mac" tabindex="0" role="button" aria-haspopup="dialog">
+          <span class="hoverlist__text" data-text="Sites &amp; Landing Pages">Sites &amp; Landing Pages</span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="grid" data-device="carousel" tabindex="0" role="button" aria-haspopup="dialog">
+          <span class="hoverlist__text" data-text="Social Media Estratégico">Social Media Estratégico</span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="brand" data-device="tabs" tabindex="0" role="button" aria-haspopup="dialog">
+          <span class="hoverlist__text" data-text="Identidade Visual">Identidade Visual</span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+        <li class="hoverlist__item" data-mock="video">
+          <span class="hoverlist__text" data-text="Vídeos/Anúncios com IA">Vídeos/Anúncios com IA</span>
+          <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
+        </li>
+      </ul>
+      <div class="hoverlist__ghost" id="hoverGhost" aria-hidden="true">
+        <div class="mock mock--hero"><span></span><em></em><b></b></div>
+        <div class="mock mock--grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="mock mock--brand"><span></span><em></em></div>
+        <div class="mock mock--video"><span></span></div>
       </div>
     </div>
 
