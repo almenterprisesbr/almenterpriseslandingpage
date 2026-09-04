@@ -840,7 +840,8 @@
   (function typeOnceHeadlines() {
     var targets = [
       { text: "O seu cliente não escolhe quem ele não lembra.", textId: "blindTyped", caretId: "blindCaret", speed: 26 },
-      { text: "Marca boa não é a mais barata nem a mais barulhenta. É a que o cliente lembra quando finalmente decide comprar.", textId: "aboutQuoteTyped", caretId: "aboutQuoteCaret", speed: 14 },
+      { text: "Cada peça do seu digital, feita para levar à venda.", textId: "servicosTyped", caretId: "servicosCaret", speed: 28 },
+      { text: "Um pouco sobre mim.", textId: "sobreTyped", caretId: "sobreCaret", speed: 24 },
       { text: "Vamos conversar sobre o seu projeto?", textId: "ctaTyped", caretId: "ctaCaret", speed: 20 }
     ];
 
