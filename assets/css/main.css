@@ -1898,28 +1898,33 @@ strong { font-weight: 600; color: var(--white); }
 
 .logo-circle {
   width: 100%;
-  aspect-ratio: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(227, 6, 19, 0.08) 0%, rgba(227, 6, 19, 0.02) 100%);
-  border: 1px solid rgba(227, 6, 19, 0.1);
+  justify-content: flex-start;
+  gap: 12px;
   transition: all 0.3s ease;
-  overflow: hidden;
 }
 
-.logo-circle:hover {
-  background: linear-gradient(135deg, rgba(227, 6, 19, 0.15) 0%, rgba(227, 6, 19, 0.05) 100%);
-  border-color: rgba(227, 6, 19, 0.2);
-  transform: scale(1.05);
+.logo-circle svg {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s ease;
 }
 
-.logo-circle img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+.logo-circle:hover svg {
+  transform: scale(1.08);
+}
+
+.logo-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(242, 242, 244, 0.8);
+  text-align: center;
+  line-height: 1.2;
+  max-width: 100%;
 }
 
 @media (max-width: 940px) {
