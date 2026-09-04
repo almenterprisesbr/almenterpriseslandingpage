@@ -203,7 +203,7 @@
         <li class="hoverlist__item" data-mock="hero" data-device="mac" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__main">
             <span class="hoverlist__text">Sites &amp; Landing Pages</span>
-            <span class="hoverlist__hint">Clique para ver mais</span>
+            <span class="hoverlist__hint"><span class="hoverlist__hint-dot" aria-hidden="true"></span>Clique para ver mais</span>
             <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
@@ -211,7 +211,7 @@
         <li class="hoverlist__item" data-mock="grid" data-device="carousel" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__main">
             <span class="hoverlist__text">Social Media Estratégico</span>
-            <span class="hoverlist__hint">Clique para ver mais</span>
+            <span class="hoverlist__hint"><span class="hoverlist__hint-dot" aria-hidden="true"></span>Clique para ver mais</span>
             <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
@@ -219,7 +219,7 @@
         <li class="hoverlist__item" data-mock="brand" data-device="tabs" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__main">
             <span class="hoverlist__text">Identidade Visual</span>
-            <span class="hoverlist__hint">Clique para ver mais</span>
+            <span class="hoverlist__hint"><span class="hoverlist__hint-dot" aria-hidden="true"></span>Clique para ver mais</span>
             <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
@@ -227,7 +227,7 @@
         <li class="hoverlist__item" data-mock="video" data-device="phone" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__main">
             <span class="hoverlist__text">Vídeos/Anúncios (com IA)</span>
-            <span class="hoverlist__hint">Clique para ver mais</span>
+            <span class="hoverlist__hint"><span class="hoverlist__hint-dot" aria-hidden="true"></span>Clique para ver mais</span>
             <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
@@ -244,7 +244,7 @@
     <!-- Caixa 2: Ferramentas — carrossel de logos -->
     <div class="showcase showcase--alt" data-reveal>
       <p class="showcase__label">Ferramentas</p>
-      <p class="showcase__sub">Usadas no processo de criação e execução de cada entrega.</p>
+      <p class="showcase__sub">Que posso utilizar no processo de criação e execução, conforme a necessidade do projeto.</p>
       <div class="logos-slider logos-slider--compact" aria-hidden="true">
         <div class="logos-slider__track">
           <img src="assets/img/logos/claude.png" alt="" loading="lazy">
@@ -436,7 +436,7 @@
 
 <section class="section" id="ferramentas">
   <div class="shell">
-    <h2 class="ferramentas__title" data-reveal>Ferramentas e softwares que utilizo</h2>
+    <h2 class="ferramentas__title" data-reveal>Ferramentas e softwares que posso utilizar para criar o projeto</h2>
   </div>
   <div class="logos-slider" data-reveal>
     <div class="logos-slider__track">
@@ -533,10 +533,13 @@
     <div class="device-modal__mac">
       <div class="device-modal__notch" aria-hidden="true"></div>
       <div class="device-modal__screen">
-        <video class="device-modal__video" id="deviceModalVideo" muted loop playsinline preload="none"></video>
+        <video class="device-modal__video" id="deviceModalVideo" loop playsinline preload="none"></video>
         <div class="device-modal__placeholder" id="deviceModalPlaceholder">
           <span>Vídeo do projeto em breve</span>
         </div>
+        <button class="device-modal__sound" id="deviceModalSound" type="button" aria-label="Desativar som do vídeo" aria-pressed="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17.2 8.8a5 5 0 0 1 0 6.4" stroke-linecap="round"/></svg>
+        </button>
       </div>
     </div>
     <div class="device-modal__base" aria-hidden="true"></div>
@@ -619,6 +622,9 @@
           </div>
         </div>
         <div class="device-modal__phone-notch" aria-hidden="true"></div>
+        <button class="device-modal__sound device-modal__sound--phone" id="phoneSound" type="button" aria-label="Desativar som do vídeo" aria-pressed="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17.2 8.8a5 5 0 0 1 0 6.4" stroke-linecap="round"/></svg>
+        </button>
       </div>
       <div class="device-modal__phone-hint" id="phoneHint">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>

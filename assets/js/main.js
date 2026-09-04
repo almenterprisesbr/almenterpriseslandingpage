@@ -650,11 +650,32 @@
     var closeBtn = document.getElementById("deviceModalClose");
     var video = document.getElementById("deviceModalVideo");
     var placeholder = document.getElementById("deviceModalPlaceholder");
+    var soundBtn = document.getElementById("deviceModalSound");
+    var phoneSoundBtn = document.getElementById("phoneSound");
     var panels = modal ? modal.querySelectorAll(".device-modal__panel") : [];
     var triggers = document.querySelectorAll(".hoverlist__item[data-device]");
     if (!modal || !triggers.length) return;
 
     var hasVideo = !!(video && video.getAttribute("src"));
+
+    if (video) video.muted = false;
+
+    function toggleSound(btn, mediaEl) {
+      if (!btn || !mediaEl) return;
+      mediaEl.muted = !mediaEl.muted;
+      btn.setAttribute("aria-pressed", String(!mediaEl.muted));
+    }
+
+    if (soundBtn && video) {
+      soundBtn.addEventListener("click", function () { toggleSound(soundBtn, video); });
+    }
+
+    if (phoneSoundBtn) {
+      phoneSoundBtn.addEventListener("click", function () {
+        var activeVideo = document.querySelector(".device-modal__phone-slide video");
+        toggleSound(phoneSoundBtn, activeVideo);
+      });
+    }
 
     function showPanel(name) {
       panels.forEach(function (panel) {
