@@ -1903,10 +1903,6 @@ strong { font-weight: 600; color: var(--white); }
   animation: logos-scroll 28s linear infinite;
 }
 
-.logos-slider:hover .logos-slider__track {
-  animation-play-state: paused;
-}
-
 .logos-slider__track img {
   height: clamp(64px, 8vw, 96px);
   width: auto;
