@@ -1712,6 +1712,21 @@ strong { font-weight: 600; color: var(--white); }
 .about__p--highlight { color: var(--white); font-weight: 500; }
 .about .lead { margin-top: 26px; }
 
+.about__photo {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.about__photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  display: block;
+  border: 2px solid var(--red);
+  box-shadow: 0 12px 48px rgba(227, 6, 19, 0.15);
+}
+
 .about__card {
   max-width: 440px;
   margin: 0 auto;
