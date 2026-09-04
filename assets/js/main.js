@@ -785,40 +785,6 @@
   })();
 
   /* ==========================================================
-     11. FERRAMENTAS — carrossel de ícones das ferramentas usadas
-     ========================================================== */
-
-  (function toolsMarquee() {
-    var track = document.getElementById("toolsTrack");
-    if (!track) return;
-
-    /* TODO Matheus: trocar por logos reais quando você mandar */
-    var TOOLS = [
-      "Photoshop", "Illustrator", "Adobe Firefly", "CapCut",
-      "Lovable", "Supabase", "ChatGPT", "Gemini", "Flow", "Claude", "Claude Code"
-    ];
-
-    function buildChip(name) {
-      var chip = document.createElement("div");
-      chip.className = "tool-chip";
-
-      var label = document.createElement("span");
-      label.className = "tool-chip__name";
-      label.textContent = name;
-
-      chip.appendChild(label);
-      return chip;
-    }
-
-    for (var g = 0; g < 2; g++) {
-      var group = document.createElement("div");
-      group.className = "marquee__group";
-      TOOLS.forEach(function (tool) { group.appendChild(buildChip(tool)); });
-      track.appendChild(group);
-    }
-  })();
-
-  /* ==========================================================
      12. Ano no rodapé
      ========================================================== */
 

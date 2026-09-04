@@ -990,6 +990,18 @@ strong { font-weight: 600; color: var(--white); }
 
 /* -- 02 Ferramentas: carrossel de ícones -- */
 
+.logos-slider--compact {
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+.logos-slider--compact .logos-slider__track {
+  gap: clamp(18px, 2.6vw, 32px);
+  animation-duration: 34s;
+}
+.logos-slider--compact .logos-slider__track img {
+  height: clamp(36px, 4.6vw, 48px);
+}
+
 .marquee--tools { border: none; padding: 12px 0; }
 .marquee--tools .marquee__group { gap: 34px; }
 
