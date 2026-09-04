@@ -58,7 +58,6 @@
     <nav class="nav__links" aria-label="Navegação principal">
       <a href="#portfolio">Portfólio</a>
       <a href="#servicos">Serviços</a>
-      <a href="#como-funciona">Como funciona</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -78,9 +77,8 @@
   <nav class="menu__links" aria-label="Navegação mobile">
     <a href="#portfolio"><span>01</span>Portfólio</a>
     <a href="#servicos"><span>02</span>Serviços</a>
-    <a href="#como-funciona"><span>03</span>Como funciona</a>
-    <a href="#sobre"><span>04</span>Sobre</a>
-    <a href="#contato"><span>05</span>Contato</a>
+    <a href="#sobre"><span>03</span>Sobre</a>
+    <a href="#contato"><span>04</span>Contato</a>
   </nav>
   <a class="btn btn--primary menu__cta" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20vim%20pelo%20site%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener">Falar no WhatsApp</a>
 </div>
@@ -168,7 +166,10 @@
     <div class="split">
       <div class="split__lead" data-reveal>
         <p class="eyebrow">O ponto cego</p>
-        <h2 class="h2">O seu cliente não escolhe<br>quem ele não lembra.</h2>
+        <h2 class="h2">
+          <span class="typed-text" id="blindTyped" aria-live="polite"></span><span class="typed-caret" id="blindCaret" aria-hidden="true"></span>
+          <span class="sr-only">O seu cliente não escolhe quem ele não lembra.</span>
+        </h2>
       </div>
       <div class="split__body">
         <p class="lead" data-reveal>
@@ -202,7 +203,7 @@
       <ul class="hoverlist" id="hoverList">
         <li class="hoverlist__item" data-mock="hero" data-device="mac" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__main">
-            <span class="hoverlist__text" data-text="Sites &amp; Landing Pages">Sites &amp; Landing Pages</span>
+            <span class="hoverlist__text">Sites &amp; Landing Pages</span>
             <span class="hoverlist__hint">Clique para ver mais</span>
             <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
@@ -210,7 +211,7 @@
         </li>
         <li class="hoverlist__item" data-mock="grid" data-device="carousel" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__main">
-            <span class="hoverlist__text" data-text="Social Media Estratégico">Social Media Estratégico</span>
+            <span class="hoverlist__text">Social Media Estratégico</span>
             <span class="hoverlist__hint">Clique para ver mais</span>
             <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
@@ -218,7 +219,7 @@
         </li>
         <li class="hoverlist__item" data-mock="brand" data-device="tabs" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__main">
-            <span class="hoverlist__text" data-text="Identidade Visual">Identidade Visual</span>
+            <span class="hoverlist__text">Identidade Visual</span>
             <span class="hoverlist__hint">Clique para ver mais</span>
             <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
@@ -226,7 +227,7 @@
         </li>
         <li class="hoverlist__item" data-mock="video" data-device="phone" tabindex="0" role="button" aria-haspopup="dialog">
           <span class="hoverlist__main">
-            <span class="hoverlist__text" data-text="Vídeos/Anúncios (com IA)">Vídeos/Anúncios (com IA)</span>
+            <span class="hoverlist__text">Vídeos/Anúncios (com IA)</span>
             <span class="hoverlist__hint">Clique para ver mais</span>
             <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
@@ -250,13 +251,6 @@
       </div>
     </div>
 
-    <div class="work__cta" data-reveal>
-      <p>Quer ver os projetos completos e o que foi feito em cada um?</p>
-      <a class="btn btn--primary" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20quero%20ver%20o%20portf%C3%B3lio%20completo." target="_blank" rel="noopener">
-        Pedir o portfólio completo
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
   </div>
 </section>
 
@@ -269,17 +263,29 @@
       <h2 class="h2">Cada peça do seu digital,<br>feita para levar à venda.</h2>
       <p class="section__sub">
         Não entrego arquivos soltos. Entrego um conjunto onde site, conteúdo e identidade
-        conversam entre si e empurram o cliente para o próximo passo.
+        conversam entre si e empurram o cliente para o próximo passo. Trabalho tanto em
+        pacote completo quanto em serviços pontuais &mdash; e qualquer escolha passa antes
+        por uma análise, pra não sair feito de qualquer jeito.
+      </p>
+      <p class="section__note">
+        <span class="section__note-dot" aria-hidden="true"></span>
+        Uso inteligência artificial para otimizar processos e apoiar a criação, com revisão
+        em cada etapa. A análise inicial é sempre gratuita.
       </p>
     </header>
 
+    <p class="cards__hint">Marque o que te interessa &mdash; a mensagem do WhatsApp já sai pronta.</p>
+
     <div class="cards">
       <article class="card" data-reveal>
+        <button class="card__select" type="button" aria-pressed="false" data-service="Sites &amp; Landing Pages" aria-label="Selecionar Sites e Landing Pages">
+          <span class="card__select-dot" aria-hidden="true"></span>
+        </button>
         <div class="card__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M9.5 6.5h.01"/></svg>
         </div>
         <h3>Sites &amp; Landing Pages</h3>
-        <p>Seu site é o vendedor que trabalha enquanto você dorme. Construo páginas rápidas, claras e desenhadas para que o visitante entenda e aja.</p>
+        <p>O site é o vendedor que trabalha enquanto você dorme. Páginas rápidas, claras e desenhadas para que o visitante entenda e aja.</p>
         <ul class="card__list">
           <li>Estrutura orientada à conversão</li>
           <li>Responsivo em qualquer tela</li>
@@ -288,11 +294,14 @@
       </article>
 
       <article class="card" data-reveal>
+        <button class="card__select" type="button" aria-pressed="false" data-service="Social Media Estratégico" aria-label="Selecionar Social Media Estratégico">
+          <span class="card__select-dot" aria-hidden="true"></span>
+        </button>
         <div class="card__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-4-1L3 20l1.1-4.6a8.4 8.4 0 0 1-1-4A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
         </div>
         <h3>Social Media Estratégico</h3>
-        <p>Conteúdo com estratégia, não com sorte. Planejo o que falar, para quem e com qual objetivo &mdash; para o perfil virar canal de entrada, não vitrine parada.</p>
+        <p>Conteúdo com estratégia, não com sorte. Planejamos o que falar, para quem e com qual objetivo &mdash; para o perfil virar canal de entrada, não vitrine parada.</p>
         <ul class="card__list">
           <li>Linha editorial definida</li>
           <li>Design de feed e stories</li>
@@ -301,6 +310,9 @@
       </article>
 
       <article class="card" data-reveal>
+        <button class="card__select" type="button" aria-pressed="false" data-service="Identidade Visual" aria-label="Selecionar Identidade Visual">
+          <span class="card__select-dot" aria-hidden="true"></span>
+        </button>
         <div class="card__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 4.5 4.5 0 0 0 0-9 4.5 4.5 0 0 1 0-9z"/></svg>
         </div>
@@ -314,56 +326,62 @@
       </article>
 
       <article class="card" data-reveal>
+        <button class="card__select" type="button" aria-pressed="false" data-service="Conteúdo &amp; Copy" aria-label="Selecionar Conteúdo e Copy">
+          <span class="card__select-dot" aria-hidden="true"></span>
+        </button>
         <div class="card__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h10M4 18h13"/><circle cx="19" cy="17" r="2.5"/></svg>
         </div>
         <h3>Conteúdo &amp; Copy</h3>
-        <p>As palavras decidem a venda. Escrevo textos que explicam o seu valor sem enrolação e conduzem quem lê até o contato.</p>
+        <p>As palavras decidem a venda. Utilizo textos que explicam o seu valor sem enrolação e conduzem quem lê até o contato.</p>
         <ul class="card__list">
           <li>Copy de site e anúncios</li>
           <li>Roteiros para vídeo curto</li>
           <li>Mensagens de abordagem</li>
         </ul>
       </article>
+
+      <article class="card" data-reveal>
+        <button class="card__select" type="button" aria-pressed="false" data-service="Vídeos/Anúncios com IA" aria-label="Selecionar Vídeos e Anúncios com IA">
+          <span class="card__select-dot" aria-hidden="true"></span>
+        </button>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 9.5l4-2.5v10l-4-2.5"/></svg>
+        </div>
+        <h3>Vídeos/Anúncios com IA</h3>
+        <p>Vídeos realistas para anunciar produto, loja ou serviço, com IA no processo de criação. Praticamente qualquer ideia é possível &mdash; alinhamos os detalhes técnicos antes de produzir.</p>
+        <ul class="card__list">
+          <li>Anúncios em vídeo para redes</li>
+          <li>Peças para lançamento de produto</li>
+          <li>Roteiro e edição inclusos</li>
+        </ul>
+      </article>
     </div>
-  </div>
-</section>
 
-<!-- ══════════ COMO FUNCIONA ══════════ -->
-
-<section class="section" id="como-funciona">
-  <div class="shell">
-    <header class="section__head" data-reveal>
-      <p class="eyebrow">Como funciona</p>
-      <h2 class="h2">Do primeiro contato<br>ao projeto no ar.</h2>
-      <p class="section__sub">
-        Um processo direto, sem etapas inventadas para encher relatório. Você sabe onde
-        o projeto está em cada momento.
+    <div class="ecosystem" data-reveal>
+      <button class="card__select card__select--eco" type="button" aria-pressed="false" data-service="Ecossistema MA Growth completo" aria-label="Selecionar o Ecossistema MA Growth completo">
+        <span class="card__select-dot" aria-hidden="true"></span>
+      </button>
+      <p class="ecosystem__label">Combo</p>
+      <h3 class="ecosystem__title">Ecossistema MA Growth</h3>
+      <p class="ecosystem__text">
+        O pacote completo: site, conteúdo, identidade e vídeo trabalhando juntos, como um
+        único sistema pensado pra gerar venda &mdash; não como entregas soltas. Não é
+        obrigatório fechar o combo pra trabalhar comigo: é só a opção pra quem quer tudo
+        alinhado desde o início.
       </p>
-    </header>
+    </div>
 
-    <ol class="steps">
-      <li class="step" data-reveal>
-        <span class="step__num">01</span>
-        <h3>Conversa</h3>
-        <p>A gente fala sobre o seu negócio, o seu cliente e o que você quer alcançar. Sem formulário genérico e sem compromisso.</p>
-      </li>
-      <li class="step" data-reveal>
-        <span class="step__num">02</span>
-        <h3>Estratégia</h3>
-        <p>Defino a mensagem, a estrutura e o caminho que leva o visitante até o contato. Você aprova antes de qualquer coisa ser produzida.</p>
-      </li>
-      <li class="step" data-reveal>
-        <span class="step__num">03</span>
-        <h3>Execução</h3>
-        <p>Design e desenvolvimento acontecem com você acompanhando. Ajustes no meio do caminho, não só no fim.</p>
-      </li>
-      <li class="step" data-reveal>
-        <span class="step__num">04</span>
-        <h3>Entrega e acompanhamento</h3>
-        <p>Publico, te explico como usar e sigo por perto para os ajustes. Você não fica sozinho depois do &ldquo;está no ar&rdquo;.</p>
-      </li>
-    </ol>
+    <div class="cta-band" data-reveal>
+      <div>
+        <p>Selecionou o que te interessa? Me conta em uma mensagem.</p>
+        <p class="cta-band__note">A análise inicial é sempre gratuita, pra qualquer serviço.</p>
+      </div>
+      <a class="btn btn--primary" id="servicesWhatsapp" href="https://wa.me/5513988631429?text=Ol%C3%A1%20Matheus%2C%20vim%20pelo%20site%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener">
+        Falar no WhatsApp
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -374,33 +392,29 @@
     <div class="about">
       <div class="about__text">
         <p class="eyebrow" data-reveal>Sobre</p>
-        <h2 class="h2" data-reveal>Uma pessoa só.</h2>
+        <h2 class="h2" data-reveal>Um pouco sobre mim.</h2>
         <p class="lead" data-reveal>
-          Sou <strong>Matheus Almeida</strong>, fundador da MA Growth. Uso inteligência artificial em
-          parte do processo, pra ganhar tempo na criação e na análise sem abrir mão da qualidade.
+          Sou <strong>Matheus Almeida</strong>, fundador da MA Growth e estudante de Publicidade
+          e Propaganda na Unisanta (USC). Uso inteligência artificial em parte do processo
+          &mdash; na criação e na análise &mdash; pra ganhar tempo sem abrir mão da qualidade.
         </p>
         <p class="about__p" data-reveal>
-          <strong class="about__highlight">Resposta rápida. Decisão sem intermediário.</strong>
+          <strong class="about__highlight">Cada projeto passa por uma análise antes de começar.</strong>
         </p>
         <p class="about__p" data-reveal>
           Não prometo número mágico nem resultado da noite pro dia. Prometo trabalho bem feito,
-          prazo combinado e uma marca que fica na memória de quem importa: o seu cliente. No fim,
-          meu objetivo é gerar mais vendas &mdash; atraindo os clientes certos pra você.
+          prazo combinado e uma marca que fica na memória de quem importa: o seu cliente.
         </p>
-
-        <div class="about__facts">
-          <div class="fact" data-reveal>
-            <strong>Prazo claro</strong>
-            <span>Combinado no início, cumprido no fim</span>
-          </div>
-        </div>
+        <p class="about__p about__p--highlight" data-reveal>
+          No fim, meu objetivo é gerar mais vendas &mdash; atraindo os clientes certos pra você.
+        </p>
       </div>
 
       <aside class="about__card" data-reveal>
         <div class="about__avatar" aria-hidden="true">MA</div>
         <p class="about__quote">
-          &ldquo;Marca boa não é a mais barata nem a mais barulhenta.
-          É a que o cliente lembra quando finalmente decide comprar.&rdquo;
+          <span class="typed-text" id="aboutQuoteTyped" aria-live="polite"></span><span class="typed-caret" id="aboutQuoteCaret" aria-hidden="true"></span>
+          <span class="sr-only">Marca boa não é a mais barata nem a mais barulhenta. É a que o cliente lembra quando finalmente decide comprar.</span>
         </p>
         <p class="about__sign">Matheus Almeida <span>&middot; MA Growth</span></p>
       </aside>
@@ -414,10 +428,13 @@
   <div class="shell">
     <div class="cta" data-reveal>
       <p class="eyebrow">Contato</p>
-      <h2 class="cta__title">Vamos conversar sobre<br>o seu projeto?</h2>
+      <h2 class="cta__title">
+        <span class="typed-text" id="ctaTyped" aria-live="polite"></span><span class="typed-caret" id="ctaCaret" aria-hidden="true"></span>
+        <span class="sr-only">Vamos conversar sobre o seu projeto?</span>
+      </h2>
       <p class="cta__sub">
-        Me conta em poucas linhas o que você precisa. Eu te respondo dizendo se consigo
-        ajudar, como faria e quanto custa. Simples assim.
+        Me conta em poucas linhas o que você precisa. A resposta vem dizendo se dá pra
+        ajudar, como seria feito e quanto custa. Simples assim.
       </p>
 
       <div class="cta__actions">
@@ -439,7 +456,6 @@
     <nav class="footer__links" aria-label="Rodapé">
       <a href="#portfolio">Portfólio</a>
       <a href="#servicos">Serviços</a>
-      <a href="#como-funciona">Como funciona</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
     </nav>

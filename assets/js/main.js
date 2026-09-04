@@ -506,7 +506,7 @@
   (function reveal() {
     /* a hero é revelada à parte, em sincronia com o fim do vídeo de intro */
     var items = Array.prototype.filter.call(
-      document.querySelectorAll("[data-reveal], .step"),
+      document.querySelectorAll("[data-reveal]"),
       function (el) { return !el.closest("#top"); }
     );
     if (!items.length) return;
@@ -550,12 +550,13 @@
       // sai de vista, pra não ficar queimado no resto da página
       heroScrollProgress = rect.bottom > 0 ? progress : 0;
 
-      // o conteúdo sobe levemente e some — sensação de profundidade
+      // o conteúdo sobe e some rápido — uma rolagem já basta pra sensação
+      // de "saída", em vez de ir sumindo aos poucos por várias telas
       if (content && !reduceMotion) {
-        var fade = Math.max(0, 1 - progress * 1.55);
+        var fade = Math.max(0, 1 - progress * 2.1);
         content.style.opacity = fade.toFixed(3);
-        content.style.transform = "translateY(" + (-progress * 46).toFixed(1) + "px) scale(" +
-                                  (1 - progress * 0.045).toFixed(4) + ")";
+        content.style.transform = "translateY(" + (-progress * 60).toFixed(1) + "px) scale(" +
+                                  (1 - progress * 0.07).toFixed(4) + ")";
       }
 
       if (captions.length) {
@@ -829,6 +830,100 @@
   document.querySelectorAll(".hoverlist__pill").forEach(function (pill) {
     pill.addEventListener("click", function (e) { e.stopPropagation(); });
   });
+
+  /* ==========================================================
+     13b. TYPE ONCE — títulos que digitam sozinhos ao entrar na tela
+     (Ponto Cego, citação do Sobre, título do Contato). Roda uma vez
+     só, sem loop — só a headline da hero (module 2) repete.
+     ========================================================== */
+
+  (function typeOnceHeadlines() {
+    var targets = [
+      { text: "O seu cliente não escolhe quem ele não lembra.", textId: "blindTyped", caretId: "blindCaret", speed: 26 },
+      { text: "Marca boa não é a mais barata nem a mais barulhenta. É a que o cliente lembra quando finalmente decide comprar.", textId: "aboutQuoteTyped", caretId: "aboutQuoteCaret", speed: 14 },
+      { text: "Vamos conversar sobre o seu projeto?", textId: "ctaTyped", caretId: "ctaCaret", speed: 20 }
+    ];
+
+    targets.forEach(function (t) {
+      var textEl = document.getElementById(t.textId);
+      var caretEl = document.getElementById(t.caretId);
+      if (!textEl) return;
+
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        textEl.textContent = t.text;
+        if (caretEl) caretEl.classList.add("is-done");
+        return;
+      }
+
+      var root = textEl.closest("[data-reveal]") || textEl;
+      var started = false;
+
+      function run() {
+        if (started) return;
+        started = true;
+        var i = 0;
+        (function tick() {
+          i++;
+          textEl.textContent = t.text.slice(0, i);
+          if (i < t.text.length) {
+            setTimeout(tick, t.speed);
+          } else if (caretEl) {
+            caretEl.classList.add("is-done");
+          }
+        })();
+      }
+
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            run();
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      obs.observe(root);
+    });
+  })();
+
+  /* ==========================================================
+     13c. SELEÇÃO DE SERVIÇOS — marca interesse e monta a
+     mensagem do WhatsApp com o que a pessoa escolheu
+     ========================================================== */
+
+  (function servicesSelect() {
+    var buttons = document.querySelectorAll(".card__select");
+    var link = document.getElementById("servicesWhatsapp");
+    if (!buttons.length || !link) return;
+
+    var selected = [];
+    var BASE_URL = "https://wa.me/5513988631429?text=";
+    var DEFAULT_MSG = "Olá Matheus, vim pelo site e quero falar sobre um projeto.";
+
+    function updateLink() {
+      var msg = selected.length
+        ? "Olá Matheus, vim pelo site e tenho interesse em: " + selected.join(", ") + ". Pode me passar mais detalhes?"
+        : DEFAULT_MSG;
+      link.href = BASE_URL + encodeURIComponent(msg);
+    }
+
+    buttons.forEach(function (btn) {
+      var service = btn.getAttribute("data-service");
+      var card = btn.closest(".card, .ecosystem");
+
+      btn.addEventListener("click", function () {
+        var isOn = btn.getAttribute("aria-pressed") === "true";
+        btn.setAttribute("aria-pressed", String(!isOn));
+        if (card) card.setAttribute("data-selected", String(!isOn));
+
+        var idx = selected.indexOf(service);
+        if (!isOn && idx === -1) selected.push(service);
+        if (isOn && idx !== -1) selected.splice(idx, 1);
+
+        updateLink();
+      });
+    });
+  })();
 
   /* ==========================================================
      13. SCROLL-JACK DA HERO — a primeira rolagem leva direto

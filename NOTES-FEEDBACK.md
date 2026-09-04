@@ -1,10 +1,37 @@
-# Feedback do Matheus — 03/09/2026 (para retomar depois)
+# Feedback do Matheus — 03/09/2026
 
-Anotações de um áudio longo do cliente (transcrito). Ainda **não implementadas** —
-ficaram só documentadas aqui para não se perderem quando o limite de uso resetar.
-Cada item referencia o `id`/classe real no código para agilizar quando formos mexer.
+Anotações de um áudio longo do cliente (transcrito). A lista abaixo ficou
+documentada em 03/09 e foi **implementada em 04/09/2026** (o cliente autorizou
+seguir com tudo). Deixei os itens originais riscados por seção como histórico,
+e um resumo do que foi feito no topo.
 
-Prioridade sugerida entre colchetes: `[alto]` `[médio]` `[baixo]`.
+---
+
+## STATUS — implementado em 04/09/2026
+
+Feito: Hero sai em ~1 scroll com animação de saída mais forte · Ponto Cego mais
+perto + título digitado (sem loop) · CTA de fundo do Portfólio removido + glow
+sutil no fundo da seção · hover "tremido" trocado por glow vermelho (com
+equivalente de toque no mobile) · Serviços reescrito (menos 1ª pessoa, pacote
++ serviço pontual + análise grátis, menção transparente de IA, card novo
+"Vídeos/Anúncios com IA", seleção por círculo em cada serviço + botão de
+WhatsApp que já monta a mensagem com o que foi marcado, caixa "Ecossistema MA
+Growth" em destaque vermelho) · seção "Como Funciona" removida (HTML + CSS
+morto) · Sobre reescrito (novo H2, menção à Unisanta/USC, nova frase no lugar
+de "decisão sem intermediário", caixinha "Prazo claro" removida, aspas da
+citação removidas + citação também digitada, card lateral agora fica parado/
+centralizado em vez de seguir o scroll) · Contato com título digitado (mais
+rápido que a Hero) e subtítulo sem "eu" · espaçamento das seções reduzido
+(mobile principalmente).
+
+Ainda **em aberto** (não mexi nesta rodada):
+- Avaliar o vídeo de intro (`#intro`/`introVideo`) — se vale a pena manter,
+  ritmo/corte. Só dá pra decidir vendo o vídeo real, não só o código.
+- Pesquisa de mercado mais aprofundada (referências tipo G4, benchmarks
+  BR/US) — usei bom senso de copywriting nas mudanças de texto, mas não fiz
+  uma pesquisa externa extensa pra não gastar à toa.
+
+Prioridade original (histórico): `[alto]` `[médio]` `[baixo]`.
 
 ---
 
