@@ -1873,10 +1873,60 @@ strong { font-weight: 600; color: var(--white); }
 
 /* ---------- Responsivo ---------- */
 
+/* ---------- Ferramentas ---------- */
+
+#ferramentas { padding: 80px 0; }
+
+.ferramentas__title {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-align: center;
+  margin-bottom: clamp(48px, 8vw, 64px);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.logos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-circle {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(227, 6, 19, 0.08) 0%, rgba(227, 6, 19, 0.02) 100%);
+  border: 1px solid rgba(227, 6, 19, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.logo-circle:hover {
+  background: linear-gradient(135deg, rgba(227, 6, 19, 0.15) 0%, rgba(227, 6, 19, 0.05) 100%);
+  border-color: rgba(227, 6, 19, 0.2);
+  transform: scale(1.05);
+}
+
+.logo-circle img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
 @media (max-width: 940px) {
   .split, .about { grid-template-columns: 1fr; }
   .split__lead { position: static; }
   .about__card { margin-top: 16px; }
+  .logos-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
 }
 
 @media (max-width: 860px) {
