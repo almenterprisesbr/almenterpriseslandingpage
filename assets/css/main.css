@@ -1722,7 +1722,7 @@ strong { font-weight: 600; color: var(--white); }
 .about__photo img {
   width: 100%;
   height: auto;
-  border-radius: 50%;
+  border-radius: 28px;
   display: block;
   border: 2px solid var(--red);
   box-shadow: 0 12px 48px rgba(227, 6, 19, 0.15);
