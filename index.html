@@ -204,7 +204,6 @@
           <span class="hoverlist__main">
             <span class="hoverlist__text">Sites &amp; Landing Pages</span>
             <span class="hoverlist__hint"><span class="hoverlist__hint-dot" aria-hidden="true"></span>Clique para ver mais</span>
-            <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
@@ -212,7 +211,6 @@
           <span class="hoverlist__main">
             <span class="hoverlist__text">Social Media Estratégico</span>
             <span class="hoverlist__hint"><span class="hoverlist__hint-dot" aria-hidden="true"></span>Clique para ver mais</span>
-            <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
@@ -220,7 +218,6 @@
           <span class="hoverlist__main">
             <span class="hoverlist__text">Identidade Visual</span>
             <span class="hoverlist__hint"><span class="hoverlist__hint-dot" aria-hidden="true"></span>Clique para ver mais</span>
-            <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
@@ -228,7 +225,6 @@
           <span class="hoverlist__main">
             <span class="hoverlist__text">Vídeos/Anúncios (com IA)</span>
             <span class="hoverlist__hint"><span class="hoverlist__hint-dot" aria-hidden="true"></span>Clique para ver mais</span>
-            <a class="hoverlist__pill" href="#servicos">Quero algo semelhante</a>
           </span>
           <span class="hoverlist__arrow" aria-hidden="true">&rarr;</span>
         </li>
@@ -543,8 +539,10 @@
       </div>
     </div>
     <div class="device-modal__base" aria-hidden="true"></div>
+    <button class="device-modal__cta" type="button" data-service-target="Sites &amp; Landing Pages">Quero algo semelhante</button>
   </div>
 
+  <!-- TODO Matheus: trocar os 12 placeholders por posts reais quando você mandar os anexos -->
   <div class="device-modal__panel" data-panel="carousel" id="panelCarousel" hidden>
     <p class="carousel__eyebrow">&mdash; Posts em destaque &mdash;</p>
     <div class="carousel">
@@ -556,10 +554,17 @@
         <div class="carousel__slide"><div class="mock mock--post mock--post-4"></div></div>
         <div class="carousel__slide"><div class="mock mock--post mock--post-5"></div></div>
         <div class="carousel__slide"><div class="mock mock--post mock--post-6"></div></div>
+        <div class="carousel__slide"><div class="mock mock--post mock--post-7"></div></div>
+        <div class="carousel__slide"><div class="mock mock--post mock--post-8"></div></div>
+        <div class="carousel__slide"><div class="mock mock--post mock--post-9"></div></div>
+        <div class="carousel__slide"><div class="mock mock--post mock--post-10"></div></div>
+        <div class="carousel__slide"><div class="mock mock--post mock--post-11"></div></div>
+        <div class="carousel__slide"><div class="mock mock--post mock--post-12"></div></div>
       </div>
       <button class="carousel__nav carousel__nav--next" id="carouselNext" type="button" aria-label="Próximo post">&rsaquo;</button>
     </div>
     <div class="carousel__dots" id="carouselDots"></div>
+    <button class="device-modal__cta" type="button" data-service-target="Social Media Estratégico">Quero algo semelhante</button>
   </div>
 
   <div class="device-modal__panel" data-panel="tabs" id="panelTabs" hidden>
@@ -663,13 +668,17 @@
         </div>
       </div>
     </div>
+    <button class="device-modal__cta" type="button" data-service-target="Identidade Visual">Quero algo semelhante</button>
   </div>
 
   <!-- TODO Matheus: trocar os placeholders por vídeos reais (curtos/anúncios) -->
   <div class="device-modal__panel" data-panel="phone" id="panelPhone" hidden>
     <p class="carousel__eyebrow">&mdash; Vídeos/Anúncios (com IA) &mdash;</p>
     <div class="device-modal__phone-wrap">
-      <a class="device-modal__phone-cta" href="#servicos">Quero algo<br>semelhante</a>
+      <div class="device-modal__phone-hint" id="phoneHint">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        <span>Role para o próximo</span>
+      </div>
       <div class="device-modal__phone">
         <div class="device-modal__phone-screen" id="phoneScreen">
           <div class="device-modal__phone-slide">
@@ -687,10 +696,7 @@
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17.2 8.8a5 5 0 0 1 0 6.4" stroke-linecap="round"/></svg>
         </button>
       </div>
-      <div class="device-modal__phone-hint" id="phoneHint">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        <span>Role para o próximo</span>
-      </div>
+      <button class="device-modal__cta device-modal__cta--phone" type="button" data-service-target="Vídeos/Anúncios com IA">Quero algo semelhante</button>
     </div>
   </div>
 </div>

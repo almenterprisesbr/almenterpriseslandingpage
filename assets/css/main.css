@@ -1202,11 +1202,10 @@ strong { font-weight: 600; color: var(--white); }
 .device-modal__phone-wrap {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-@media (max-width: 900px) {
-  .device-modal__phone-wrap { flex-direction: column; gap: 4px; }
+  gap: 16px;
 }
 
 .device-modal__phone {
@@ -1270,48 +1269,10 @@ strong { font-weight: 600; color: var(--white); }
   z-index: 2;
 }
 
-.device-modal__phone-cta {
-  position: absolute;
-  right: calc(50% + min(160px, 31vw) + 24px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 90px;
-  padding: 12px 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(var(--red-glow), .4);
-  background: rgba(var(--red-glow), .08);
-  color: var(--red);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: .3px;
-  text-align: center;
-  line-height: 1.4;
-  opacity: 0;
-  transition: opacity .4s ease, background-color .2s ease, border-color .2s ease;
-}
-.device-modal.is-open .device-modal__phone-cta { opacity: 1; }
-.device-modal__phone-cta:hover { background: rgba(var(--red-glow), .16); border-color: var(--red); }
-
-@media (max-width: 900px) {
-  .device-modal__phone-cta {
-    position: static;
-    transform: none;
-    width: auto;
-    margin-bottom: 14px;
-  }
-}
-
 .device-modal__phone-hint {
-  position: absolute;
-  left: calc(50% + min(160px, 31vw) + 24px);
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  width: 70px;
+  gap: 8px;
   color: var(--gray-dim);
   font-family: var(--font-mono);
   font-size: 11px;
@@ -1322,28 +1283,37 @@ strong { font-weight: 600; color: var(--white); }
   transition: opacity .4s ease;
 }
 .device-modal.is-open .device-modal__phone-hint { opacity: 1; }
-.device-modal.is-open .device-modal__phone-hint.is-dismissed { opacity: 0; }
+.device-modal.is-open .device-modal__phone-hint.is-dismissed { opacity: .35; }
 .device-modal__phone-hint svg { animation: phoneHintBounce 1.6s ease-in-out infinite; }
 
 @keyframes phoneHintBounce {
   0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(6px); }
+  50%      { transform: translateY(4px); }
 }
 
-@media (max-width: 900px) {
-  .device-modal__phone-hint {
-    left: 50%;
-    top: auto;
-    bottom: -46px;
-    transform: translateX(-50%);
-    flex-direction: row;
-  }
-  .device-modal__phone-hint svg { animation: phoneHintBounceX 1.6s ease-in-out infinite; }
-  @keyframes phoneHintBounceX {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(4px); }
-  }
+/* -- CTA "quero algo semelhante" — reaproveitado no rodapé de cada painel do modal -- */
+
+.device-modal__cta {
+  margin-top: 22px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--red-glow), .4);
+  background: rgba(var(--red-glow), .08);
+  color: var(--red);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .4s ease .1s, transform .4s ease .1s, background-color .2s ease, border-color .2s ease;
 }
+.device-modal.is-open .device-modal__cta { opacity: 1; transform: translateY(0); }
+.device-modal__cta:hover { background: rgba(var(--red-glow), .16); border-color: var(--red); }
+
+.device-modal__cta--phone { margin-top: 0; }
 
 /* -- modal: carrossel de posts -- */
 
@@ -1731,6 +1701,12 @@ strong { font-weight: 600; color: var(--white); }
 .mock--post-4 { background: linear-gradient(135deg, #1c1c1c, rgba(var(--red-glow), .22)); }
 .mock--post-5 { background: linear-gradient(135deg, #101012, #201f22); }
 .mock--post-6 { background: linear-gradient(135deg, rgba(var(--red-glow), .38), #16161a); }
+.mock--post-7  { background: linear-gradient(135deg, #191919, #262626); }
+.mock--post-8  { background: linear-gradient(135deg, rgba(var(--red-glow), .24), #131315); }
+.mock--post-9  { background: #17171a; }
+.mock--post-10 { background: linear-gradient(135deg, #1a1a1c, rgba(var(--red-glow), .3)); }
+.mock--post-11 { background: linear-gradient(135deg, #121214, #1e1e21); }
+.mock--post-12 { background: linear-gradient(135deg, rgba(var(--red-glow), .45), #101012); }
 
 .cta-band {
   margin-top: clamp(40px, 5vw, 64px);

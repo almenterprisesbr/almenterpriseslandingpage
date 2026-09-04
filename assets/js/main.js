@@ -718,6 +718,27 @@
 
     if (placeholder) placeholder.hidden = hasVideo;
 
+    var ctaButtons = modal.querySelectorAll(".device-modal__cta[data-service-target]");
+    ctaButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var service = btn.getAttribute("data-service-target");
+        close();
+
+        var servicos = document.getElementById("servicos");
+        var targetSelect = document.querySelector('.card__select[data-service="' + service + '"]');
+
+        if (servicos) servicos.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        if (targetSelect) {
+          setTimeout(function () {
+            if (targetSelect.getAttribute("aria-pressed") !== "true") targetSelect.click();
+            var card = targetSelect.closest(".card, .ecosystem");
+            if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+          }, 450);
+        }
+      });
+    });
+
     var phoneScreen = document.getElementById("phoneScreen");
     var phoneHint = document.getElementById("phoneHint");
     if (phoneScreen && phoneHint) {
@@ -867,11 +888,6 @@
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // pill "quero algo semelhante" vive dentro do item clicável da lista de
-  // serviços: sem isso, o clique nela também dispararia o modal do item
-  document.querySelectorAll(".hoverlist__pill").forEach(function (pill) {
-    pill.addEventListener("click", function (e) { e.stopPropagation(); });
-  });
 
   /* ==========================================================
      13b. TYPE ONCE — títulos que digitam sozinhos ao entrar na tela
