@@ -779,6 +779,61 @@
   })();
 
   /* ==========================================================
+     9b. SLIDER ANTES/DEPOIS — comparação nas abas de identidade visual
+     ========================================================== */
+
+  (function compareSliders() {
+    var sliders = document.querySelectorAll("[data-compare-slider]");
+    if (!sliders.length) return;
+
+    sliders.forEach(function (slider) {
+      var dragging = false;
+
+      function setPosFromClientX(clientX) {
+        var rect = slider.getBoundingClientRect();
+        var pct = ((clientX - rect.left) / rect.width) * 100;
+        pct = Math.max(4, Math.min(96, pct));
+        slider.style.setProperty("--pos", pct + "%");
+      }
+
+      function onMove(e) {
+        if (!dragging) return;
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        setPosFromClientX(clientX);
+      }
+
+      function stopDrag() {
+        dragging = false;
+      }
+
+      slider.addEventListener("pointerdown", function (e) {
+        dragging = true;
+        setPosFromClientX(e.clientX);
+      });
+      window.addEventListener("pointermove", onMove);
+      window.addEventListener("pointerup", stopDrag);
+
+      slider.addEventListener("touchstart", function (e) {
+        dragging = true;
+        setPosFromClientX(e.touches[0].clientX);
+      }, { passive: true });
+      slider.addEventListener("touchmove", onMove, { passive: true });
+      slider.addEventListener("touchend", stopDrag);
+
+      slider.addEventListener("keydown", function (e) {
+        var current = parseFloat(getComputedStyle(slider).getPropertyValue("--pos")) || 50;
+        if (e.key === "ArrowLeft") { slider.style.setProperty("--pos", Math.max(4, current - 5) + "%"); }
+        if (e.key === "ArrowRight") { slider.style.setProperty("--pos", Math.min(96, current + 5) + "%"); }
+      });
+      slider.setAttribute("tabindex", "0");
+      slider.setAttribute("role", "slider");
+      slider.setAttribute("aria-label", "Arraste para comparar antes e depois");
+      slider.setAttribute("aria-valuemin", "0");
+      slider.setAttribute("aria-valuemax", "100");
+    });
+  })();
+
+  /* ==========================================================
      10. ABAS DE IDENTIDADE VISUAL — dentro do modal, painel "tabs"
      ========================================================== */
 

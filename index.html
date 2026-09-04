@@ -572,29 +572,90 @@
         <button class="id-tabs__btn" type="button" data-tab="grafico" role="tab" aria-selected="false">Elementos gráficos</button>
       </div>
       <div class="id-tabs__panels" id="idTabsPanels">
+        <!-- TODO Matheus: trocar os .mock por <img> reais (antes/depois) quando você mandar os logos -->
         <div class="id-tabs__panel is-active" data-tab-panel="logo">
-          <div class="id-tabs__preview"><div class="mock mock--brand"><span></span><em></em></div></div>
+          <div class="id-tabs__preview compare-slider" data-compare-slider>
+            <div class="compare-slider__pane compare-slider__pane--after">
+              <div class="mock mock--brand"><span></span><em></em></div>
+            </div>
+            <div class="compare-slider__pane compare-slider__pane--before">
+              <div class="mock mock--brand mock--before"><span></span><em></em></div>
+            </div>
+            <span class="compare-slider__tag compare-slider__tag--before">Antes</span>
+            <span class="compare-slider__tag compare-slider__tag--after">Depois</span>
+            <div class="compare-slider__handle" aria-hidden="true">
+              <span class="compare-slider__line"></span>
+              <span class="compare-slider__grip">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6l-6 6 6 6M10 6l6 6-6 6" transform="translate(0,0)"/></svg>
+              </span>
+            </div>
+          </div>
           <div class="id-tabs__text">
             <h4>Logotipo</h4>
             <p>Como o símbolo é construído, as variações (positiva, negativa, monocromática) e onde cada uma pode ser usada.</p>
           </div>
         </div>
         <div class="id-tabs__panel" data-tab-panel="paleta">
-          <div class="id-tabs__preview"><div class="mock mock--palette"><i></i><i></i><i></i><i></i></div></div>
+          <div class="id-tabs__preview compare-slider" data-compare-slider>
+            <div class="compare-slider__pane compare-slider__pane--after">
+              <div class="mock mock--palette"><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="compare-slider__pane compare-slider__pane--before">
+              <div class="mock mock--palette mock--before"><i></i><i></i><i></i><i></i></div>
+            </div>
+            <span class="compare-slider__tag compare-slider__tag--before">Antes</span>
+            <span class="compare-slider__tag compare-slider__tag--after">Depois</span>
+            <div class="compare-slider__handle" aria-hidden="true">
+              <span class="compare-slider__line"></span>
+              <span class="compare-slider__grip">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6l-6 6 6 6M10 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
           <div class="id-tabs__text">
             <h4>Paleta de cores</h4>
             <p>As cores oficiais da marca, o porquê de cada uma e como combinar sem perder consistência visual.</p>
           </div>
         </div>
         <div class="id-tabs__panel" data-tab-panel="tipografia">
-          <div class="id-tabs__preview"><div class="mock mock--type"><strong>Aa</strong><small></small></div></div>
+          <div class="id-tabs__preview compare-slider" data-compare-slider>
+            <div class="compare-slider__pane compare-slider__pane--after">
+              <div class="mock mock--type"><strong>Aa</strong><small></small></div>
+            </div>
+            <div class="compare-slider__pane compare-slider__pane--before">
+              <div class="mock mock--type mock--before"><strong>Aa</strong><small></small></div>
+            </div>
+            <span class="compare-slider__tag compare-slider__tag--before">Antes</span>
+            <span class="compare-slider__tag compare-slider__tag--after">Depois</span>
+            <div class="compare-slider__handle" aria-hidden="true">
+              <span class="compare-slider__line"></span>
+              <span class="compare-slider__grip">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6l-6 6 6 6M10 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
           <div class="id-tabs__text">
             <h4>Tipografia</h4>
             <p>As fontes escolhidas pra cada uso, do título ao texto corrido, e a hierarquia entre elas.</p>
           </div>
         </div>
         <div class="id-tabs__panel" data-tab-panel="grafico">
-          <div class="id-tabs__preview"><div class="mock mock--graphics"><i></i><i></i><i></i></div></div>
+          <div class="id-tabs__preview compare-slider" data-compare-slider>
+            <div class="compare-slider__pane compare-slider__pane--after">
+              <div class="mock mock--graphics"><i></i><i></i><i></i></div>
+            </div>
+            <div class="compare-slider__pane compare-slider__pane--before">
+              <div class="mock mock--graphics mock--before"><i></i><i></i><i></i></div>
+            </div>
+            <span class="compare-slider__tag compare-slider__tag--before">Antes</span>
+            <span class="compare-slider__tag compare-slider__tag--after">Depois</span>
+            <div class="compare-slider__handle" aria-hidden="true">
+              <span class="compare-slider__line"></span>
+              <span class="compare-slider__grip">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6l-6 6 6 6M10 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
           <div class="id-tabs__text">
             <h4>Elementos gráficos</h4>
             <p>Ícones, texturas e formas de apoio que reforçam a identidade em qualquer peça.</p>
