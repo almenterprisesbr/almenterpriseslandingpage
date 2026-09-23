@@ -520,7 +520,7 @@
 <!-- TODO Matheus: trocar o placeholder do laptop por assets/video/landing-demo.mp4,
      e os 6 quadrados do carrossel pelas imagens reais dos posts (assets/img/) -->
 
-<div class="device-modal" id="deviceModal" aria-hidden="true" role="dialog" aria-label="Prévia do projeto">
+<div class="device-modal" id="deviceModal" aria-hidden="true" aria-modal="true" role="dialog" aria-label="Prévia do projeto">
   <button class="device-modal__close" id="deviceModalClose" type="button" aria-label="Fechar">
     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
@@ -542,28 +542,25 @@
     <button class="device-modal__cta" type="button" data-service-target="Sites &amp; Landing Pages">Quero algo semelhante</button>
   </div>
 
-  <!-- TODO Matheus: trocar os 12 placeholders por posts reais quando você mandar os anexos -->
-  <div class="device-modal__panel" data-panel="carousel" id="panelCarousel" hidden>
-    <p class="carousel__eyebrow">&mdash; Posts em destaque &mdash;</p>
-    <div class="carousel">
-      <button class="carousel__nav carousel__nav--prev" id="carouselPrev" type="button" aria-label="Post anterior">&lsaquo;</button>
-      <div class="carousel__track" id="carouselTrack">
-        <div class="carousel__slide"><div class="mock mock--post mock--post-1"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-2"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-3"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-4"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-5"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-6"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-7"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-8"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-9"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-10"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-11"></div></div>
-        <div class="carousel__slide"><div class="mock mock--post mock--post-12"></div></div>
-      </div>
-      <button class="carousel__nav carousel__nav--next" id="carouselNext" type="button" aria-label="Próximo post">&rsaquo;</button>
+  <div class="device-modal__panel social-portfolio" data-panel="carousel" id="panelCarousel" hidden>
+    <div id="socialNiches">
+      <p class="carousel__eyebrow">Social Media Estratégico · Portfólio por nicho</p>
+      <button class="niche-cover" id="personalGalleryOpen" type="button" aria-controls="personalGallery" aria-expanded="false">
+        <img src="assets/img/portfolio/personal-academia/post-01.png" alt="Campanha de personal trainer: transforme seu corpo e sua rotina" width="1122" height="1402" loading="lazy">
+        <span class="niche-cover__copy"><strong>Personal / Academia</strong><span>Ver mais posts · 4 artes &rarr;</span></span>
+      </button>
     </div>
-    <div class="carousel__dots" id="carouselDots"></div>
+    <div id="personalGallery" class="niche-gallery" hidden>
+      <button class="niche-back" id="personalGalleryBack" type="button">&larr; Voltar aos nichos</button>
+      <h2 id="personalGalleryTitle" tabindex="-1">Personal / Academia</h2>
+      <p class="niche-gallery__intro">Campanha de Social Media · 4 artes</p>
+      <div class="niche-gallery__grid">
+        <figure><img src="assets/img/portfolio/personal-academia/post-01.png" alt="Personal / Academia — arte 1 da campanha" loading="lazy" decoding="async"><figcaption>Personal / Academia · 01 / 04</figcaption></figure>
+        <figure><img src="assets/img/portfolio/personal-academia/post-02.png" alt="Personal / Academia — arte 2 da campanha" loading="lazy" decoding="async"><figcaption>Personal / Academia · 02 / 04</figcaption></figure>
+        <figure><img src="assets/img/portfolio/personal-academia/post-03.png" alt="Personal / Academia — arte 3 da campanha" loading="lazy" decoding="async"><figcaption>Personal / Academia · 03 / 04</figcaption></figure>
+        <figure><img src="assets/img/portfolio/personal-academia/post-04.png" alt="Personal / Academia — arte 4 da campanha" loading="lazy" decoding="async"><figcaption>Personal / Academia · 04 / 04</figcaption></figure>
+      </div>
+    </div>
     <button class="device-modal__cta" type="button" data-service-target="Social Media Estratégico">Quero algo semelhante</button>
   </div>
 

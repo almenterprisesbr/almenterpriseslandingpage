@@ -683,10 +683,34 @@
       });
     }
 
+    var returnFocus;
+    var niches = document.getElementById("socialNiches");
+    var gallery = document.getElementById("personalGallery");
+    var galleryOpen = document.getElementById("personalGalleryOpen");
+    var galleryBack = document.getElementById("personalGalleryBack");
+    function showNiches() {
+      niches.hidden = false;
+      gallery.hidden = true;
+      galleryOpen.setAttribute("aria-expanded", "false");
+    }
+    galleryOpen.addEventListener("click", function () {
+      niches.hidden = true;
+      gallery.hidden = false;
+      galleryOpen.setAttribute("aria-expanded", "true");
+      document.getElementById("personalGalleryTitle").focus();
+    });
+    galleryBack.addEventListener("click", function () {
+      showNiches();
+      galleryOpen.focus();
+    });
+
     function open(deviceType) {
+      returnFocus = document.activeElement;
+      showNiches();
       showPanel(deviceType);
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
+      closeBtn.focus();
       document.documentElement.style.overflow = "hidden";
       if (deviceType === "mac" && hasVideo && video) video.play().catch(function () {});
     }
@@ -696,6 +720,7 @@
       modal.setAttribute("aria-hidden", "true");
       document.documentElement.style.overflow = "";
       if (video) video.pause();
+      if (returnFocus) returnFocus.focus();
     }
 
     triggers.forEach(function (trigger) {
@@ -713,7 +738,14 @@
     });
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && modal.classList.contains("is-open")) close();
+      if (!modal.classList.contains("is-open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "Tab") {
+        var focusable = Array.from(modal.querySelectorAll('button, a[href], [tabindex="0"]')).filter(function (el) { return !el.disabled && el.getClientRects().length; });
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && (document.activeElement === first || !focusable.includes(document.activeElement))) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     });
 
     if (placeholder) placeholder.hidden = hasVideo;
