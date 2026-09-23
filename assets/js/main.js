@@ -685,23 +685,27 @@
 
     var returnFocus;
     var niches = document.getElementById("socialNiches");
-    var gallery = document.getElementById("personalGallery");
-    var galleryOpen = document.getElementById("personalGalleryOpen");
-    var galleryBack = document.getElementById("personalGalleryBack");
+    var galleryButtons = niches.querySelectorAll(".niche-cover[aria-controls]");
     function showNiches() {
       niches.hidden = false;
-      gallery.hidden = true;
-      galleryOpen.setAttribute("aria-expanded", "false");
+      galleryButtons.forEach(function (button) {
+        document.getElementById(button.getAttribute("aria-controls")).hidden = true;
+        button.setAttribute("aria-expanded", "false");
+      });
     }
-    galleryOpen.addEventListener("click", function () {
-      niches.hidden = true;
-      gallery.hidden = false;
-      galleryOpen.setAttribute("aria-expanded", "true");
-      document.getElementById("personalGalleryTitle").focus();
-    });
-    galleryBack.addEventListener("click", function () {
-      showNiches();
-      galleryOpen.focus();
+    galleryButtons.forEach(function (button) {
+      var gallery = document.getElementById(button.getAttribute("aria-controls"));
+      button.addEventListener("click", function () {
+        showNiches();
+        niches.hidden = true;
+        gallery.hidden = false;
+        button.setAttribute("aria-expanded", "true");
+        gallery.querySelector("h2").focus();
+      });
+      gallery.querySelector(".niche-back").addEventListener("click", function () {
+        showNiches();
+        button.focus();
+      });
     });
 
     function open(deviceType) {
