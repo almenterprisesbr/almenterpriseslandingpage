@@ -2138,3 +2138,10 @@ strong { font-weight: 600; color: var(--white); }
 @media (max-width: 640px) {
   .niche-covers { grid-template-columns: 1fr; }
 }
+
+/* Novos nichos ocupam o espaço disponível sem ultrapassar a prévia. */
+.niche-covers { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); width: min(1080px, calc(100vw - 88px)); }
+.niche-covers .niche-cover { width: 100%; height: 100%; }
+@media (max-width: 640px) {
+  .niche-covers { grid-template-columns: 1fr; width: min(340px, 78vw); }
+}
