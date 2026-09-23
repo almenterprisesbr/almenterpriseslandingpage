@@ -1054,3 +1054,46 @@
     window.addEventListener("keydown", onKey);
   })();
 })();
+
+/* vídeos por nicho e formato: troca o conteúdo do feed (celular 9:16 ou tela 16:9) */
+(function () {
+  var tabs = document.getElementById("vidTabs");
+  var fmt = document.getElementById("vidFormat");
+  var phone = document.querySelector(".device-modal__phone");
+  var phoneScreen = document.getElementById("phoneScreen");
+  var wide = document.getElementById("wideFrame");
+  var wideScreen = document.getElementById("wideScreen");
+  if (!tabs || !fmt || !phone || !phoneScreen || !wide || !wideScreen) return;
+
+  /* quando os vídeos chegarem: trocar o número por [{ src, poster }, ...] */
+  var VIDEOS = {
+    ugc:     { v: 4, h: 2 },
+    produto: { v: 3, h: 3 },
+    anuncio: { v: 3, h: 4 }
+  };
+  var NAMES = { ugc: "UGC", produto: "Produto", anuncio: "Anúncio" };
+  var niche = "ugc", ratio = "v";
+
+  function slides(n, label) {
+    var html = "";
+    for (var i = 1; i <= n; i++) {
+      html += '<div class="device-modal__phone-slide"><div class="device-modal__phone-placeholder"><span>' +
+        label + " " + i + " em breve</span></div></div>";
+    }
+    return html;
+  }
+  function render() {
+    var n = VIDEOS[niche][ratio];
+    var label = NAMES[niche] + " · " + (ratio === "v" ? "9:16" : "16:9") + " · vídeo";
+    var isV = ratio === "v";
+    phone.hidden = !isV;
+    wide.hidden = isV;
+    (isV ? phoneScreen : wideScreen).innerHTML = slides(n, label);
+    (isV ? phoneScreen : wideScreen).scrollTop = 0;
+    tabs.querySelectorAll("button").forEach(function (b) { b.classList.toggle("is-active", b.dataset.niche === niche); b.setAttribute("aria-selected", b.dataset.niche === niche); });
+    fmt.querySelectorAll("button").forEach(function (b) { b.classList.toggle("is-active", b.dataset.ratio === ratio); });
+  }
+  tabs.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { niche = b.dataset.niche; render(); } });
+  fmt.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { ratio = b.dataset.ratio; render(); } });
+  render();
+})();

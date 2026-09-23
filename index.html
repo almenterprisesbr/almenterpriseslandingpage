@@ -749,6 +749,17 @@
   <!-- TODO Matheus: trocar os placeholders por vídeos reais (curtos/anúncios) -->
   <div class="device-modal__panel" data-panel="phone" id="panelPhone" hidden>
     <p class="carousel__eyebrow">&mdash; Vídeos/Anúncios (com IA) &mdash;</p>
+    <div class="vid-nav">
+      <div class="vid-tabs" id="vidTabs" role="tablist" aria-label="Nicho de vídeo">
+        <button type="button" role="tab" class="is-active" data-niche="ugc">UGC</button>
+        <button type="button" role="tab" data-niche="produto">Produto</button>
+        <button type="button" role="tab" data-niche="anuncio">Anúncio</button>
+      </div>
+      <div class="vid-format" id="vidFormat" aria-label="Formato do vídeo">
+        <button type="button" class="is-active" data-ratio="v">9:16 Vertical</button>
+        <button type="button" data-ratio="h">16:9 Horizontal</button>
+      </div>
+    </div>
     <div class="device-modal__phone-wrap">
       <div class="device-modal__phone-hint" id="phoneHint">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -770,6 +781,9 @@
         <button class="device-modal__sound device-modal__sound--phone" id="phoneSound" type="button" aria-label="Desativar som do vídeo" aria-pressed="true">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17.2 8.8a5 5 0 0 1 0 6.4" stroke-linecap="round"/></svg>
         </button>
+      </div>
+      <div class="device-modal__wide" id="wideFrame" hidden>
+        <div class="device-modal__wide-screen" id="wideScreen"></div>
       </div>
       <button class="device-modal__cta device-modal__cta--phone" type="button" data-service-target="Vídeos/Anúncios com IA">Quero algo semelhante</button>
     </div>

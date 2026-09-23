@@ -2146,3 +2146,31 @@ strong { font-weight: 600; color: var(--white); }
   .niche-covers { display: grid; grid-template-columns: 1fr; width: min(340px, 78vw); }
   .niche-covers .niche-cover { width: 100%; min-width: 0; }
 }
+
+/* -- vídeos: nichos (UGC / Produto / Anúncio) + formato (9:16 / 16:9) -- */
+.vid-nav { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 22px; }
+.vid-tabs, .vid-format { display: flex; gap: 6px; }
+.vid-tabs button, .vid-format button {
+  padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line-strong);
+  background: transparent; color: var(--gray-dim); cursor: pointer;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .3px;
+  transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+}
+.vid-format button { padding: 6px 12px; font-size: 11px; border-color: transparent; }
+.vid-tabs button:hover, .vid-format button:hover { color: var(--white); }
+.vid-tabs button.is-active { color: var(--red); border-color: rgba(var(--red-glow), .4); background: rgba(var(--red-glow), .08); }
+.vid-format button.is-active { color: var(--white); border-color: var(--line-strong); }
+#panelPhone .device-modal__phone { width: min(270px, 62vw); }
+.device-modal__wide {
+  width: min(720px, 86vw); aspect-ratio: 16 / 9; background: #101012;
+  border: 2px solid #2c2c30; border-radius: 18px; padding: 10px;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, .6);
+}
+.device-modal__wide[hidden] { display: none; }
+.device-modal__wide-screen {
+  height: 100%; border-radius: 10px; overflow-y: auto; overflow-x: hidden;
+  scroll-snap-type: y mandatory; background: #050505; scrollbar-width: none;
+}
+.device-modal__wide-screen::-webkit-scrollbar { display: none; }
+@media (max-width: 640px) { .vid-tabs button { padding: 8px 14px; } }
+#panelPhone .device-modal__phone-wrap { min-height: 680px; } /* os botões de nicho não pulam ao trocar de formato */
