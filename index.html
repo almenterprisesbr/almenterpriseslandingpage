@@ -749,13 +749,11 @@
   <!-- TODO Matheus: trocar os placeholders por vídeos reais (curtos/anúncios) -->
   <div class="device-modal__panel" data-panel="phone" id="panelPhone" hidden>
     <p class="carousel__eyebrow">&mdash; Vídeos/Anúncios (com IA) &mdash;</p>
-    <div class="vid-tabs" id="vidTabs" role="tablist" aria-label="Nicho de vídeo">
-      <button type="button" role="tab" class="is-active" data-niche="ugc">UGC</button>
-      <button type="button" role="tab" data-niche="produto">Produto</button>
-      <button type="button" role="tab" data-niche="anuncio">Anúncio</button>
+    <div class="vid-shelves" id="vidShelves"></div>
+    <div class="vid-player" id="vidPlayer" tabindex="-1" hidden role="dialog" aria-label="Player de vídeos">
+      <div class="vid-player__bar"><button type="button" id="vidBack">&larr; Voltar</button><span id="vidCount"></span></div>
+      <div class="vid-player__feed" id="vidPlayerFeed"></div>
     </div>
-    <p class="vid-hint"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Role para ver mais</p>
-    <div class="vid-feed" id="vidFeed" tabindex="0" aria-label="Vídeos do nicho"></div>
     <button class="device-modal__cta device-modal__cta--phone" type="button" data-service-target="Vídeos/Anúncios com IA">Quero algo semelhante</button>
   </div>
 </div>

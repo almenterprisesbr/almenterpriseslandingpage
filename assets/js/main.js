@@ -1055,31 +1055,49 @@
   })();
 })();
 
-/* vídeos por nicho: feed único, cada vídeo no próprio formato (v = 9:16, h = 16:9) */
+/* vídeos: prateleira por nicho; toque numa miniatura abre o player em tela cheia (rola pra ver o próximo) */
 (function () {
-  var tabs = document.getElementById("vidTabs");
-  var feed = document.getElementById("vidFeed");
-  if (!tabs || !feed) return;
+  var shelves = document.getElementById("vidShelves");
+  var player = document.getElementById("vidPlayer");
+  var feed = document.getElementById("vidPlayerFeed");
+  var back = document.getElementById("vidBack");
+  var count = document.getElementById("vidCount");
+  if (!shelves || !player || !feed || !back || !count) return;
 
   /* quando os vídeos chegarem: trocar "v"/"h" por { ratio: "v", src, poster } */
   var VIDEOS = {
-    ugc:     ["v", "v", "h", "v"],
-    produto: ["v", "h", "h"],
-    anuncio: ["h", "v", "h"]
+    ugc:     { title: "UGC",               items: ["v", "v", "h", "v"] },
+    produto: { title: "Produto",           items: ["v", "h", "h"] },
+    anuncio: { title: "Anúncio Comercial", items: ["h", "v", "h"] }
   };
-  var NAMES = { ugc: "UGC", produto: "Produto", anuncio: "Anúncio" };
+  var PLAY = '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  var current = "ugc";
 
-  function render(niche) {
-    feed.innerHTML = VIDEOS[niche].map(function (r, i) {
-      return '<div class="vid-card vid-card--' + r + '"><div class="device-modal__phone-placeholder"><span>' +
-        NAMES[niche] + " · " + (r === "v" ? "9:16" : "16:9") + " · vídeo " + (i + 1) + " em breve</span></div></div>";
-    }).join("");
-    feed.scrollTop = 0;
-    tabs.querySelectorAll("button").forEach(function (b) {
-      b.classList.toggle("is-active", b.dataset.niche === niche);
-      b.setAttribute("aria-selected", b.dataset.niche === niche);
-    });
+  shelves.innerHTML = Object.keys(VIDEOS).map(function (k) {
+    var v = VIDEOS[k];
+    return '<section class="vid-row"><div class="vid-row__head"><h3>' + v.title + "</h3><span>" + v.items.length + ' vídeos</span></div><div class="vid-rail">' +
+      v.items.map(function (r, i) {
+        return '<button type="button" class="vid-thumb vid-thumb--' + r + '" data-niche="' + k + '" data-i="' + i + '" aria-label="' + v.title + ", vídeo " + (i + 1) + '">' +
+          '<span class="vid-thumb__tag">' + (r === "v" ? "9:16" : "16:9") + '</span><span class="vid-thumb__play">' + PLAY + "</span></button>";
+      }).join("") + "</div></section>";
+  }).join("");
+
+  function update() {
+    var n = VIDEOS[current].items.length;
+    var i = Math.min(n, Math.round(feed.scrollTop / (feed.clientHeight || 1)) + 1);
+    count.textContent = VIDEOS[current].title + " · " + i + " / " + n;
   }
-  tabs.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) render(b.dataset.niche); });
-  render("ugc");
+  function open(niche, i) {
+    current = niche;
+    feed.innerHTML = VIDEOS[niche].items.map(function (r, k) {
+      return '<div class="vid-slide"><div class="vid-slide__media vid-slide__media--' + r + '"><span>' + VIDEOS[niche].title + " · " + (r === "v" ? "9:16" : "16:9") + " · vídeo " + (k + 1) + " em breve</span></div></div>";
+    }).join("");
+    player.hidden = false;
+    feed.scrollTop = i * feed.clientHeight;
+    update();
+    player.focus();
+  }
+  shelves.addEventListener("click", function (e) { var t = e.target.closest(".vid-thumb"); if (t) open(t.dataset.niche, +t.dataset.i); });
+  back.addEventListener("click", function () { player.hidden = true; });
+  feed.addEventListener("scroll", update);
 })();
