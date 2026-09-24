@@ -1089,7 +1089,7 @@
       { src: "", poster: "", handle: "@almenterprises", desc: "Terceiro vídeo UGC #ugc #ia" }
     ],
     produto: [
-      { src: "", poster: "", handle: "@almenterprises", desc: "Vídeo de produto #produto #ia" },
+      { src: "assets/video/portfolio/produto-01.mp4", poster: "assets/video/portfolio/produto-01.webp", handle: "@almenterprises", desc: "Ensaio fashion com IA #produto #moda #ia" },
       { src: "", poster: "", handle: "@almenterprises", desc: "Outro vídeo de produto #produto" },
       { src: "", poster: "", handle: "@almenterprises", desc: "Mais um produto #produto #ia" }
     ],

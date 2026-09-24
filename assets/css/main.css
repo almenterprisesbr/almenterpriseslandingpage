@@ -2162,7 +2162,7 @@ strong { font-weight: 600; color: var(--white); }
 .vid-tabs { position: relative; display: flex; gap: 8px; margin-right: 64px; padding-right: 20px; overflow-x: auto; scrollbar-width: none; pointer-events: auto; }
 .vid-tabs::-webkit-scrollbar { display: none; }
 .vid-tabs.has-more { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); }
-.vid-tabs button { flex: none; padding: 8px 15px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .28); background: rgba(0, 0, 0, .38); backdrop-filter: blur(6px); color: #fff; font: 600 13px var(--font-body); white-space: nowrap; cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+.vid-tabs button { flex: none; padding: 8px 15px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .28); background: rgba(0, 0, 0, .5); color: #fff; font: 600 13px var(--font-body); white-space: nowrap; cursor: pointer; transition: background-color .2s ease, color .2s ease; }
 .vid-tabs button:hover { background: rgba(255, 255, 255, .18); }
 .vid-tabs button.is-active { background: #fff; border-color: #fff; color: #111; }
 .vid-sound { position: absolute; z-index: 4; top: max(90px, calc(env(safe-area-inset-top, 0px) + 76px)); left: 12px; width: 38px; height: 38px; display: grid; place-items: center; border: 0; border-radius: 50%; background: rgba(0, 0, 0, .4); color: #fff; cursor: pointer; }
@@ -2170,7 +2170,7 @@ strong { font-weight: 600; color: var(--white); }
 .vid-feed::-webkit-scrollbar { display: none; }
 .vid-slide { position: relative; height: 100%; scroll-snap-align: start; scroll-snap-stop: always; overflow: hidden; background: #000; }
 .vid-media { position: absolute; inset: 0; cursor: pointer; }
-.vid-media video { width: 100%; height: 100%; object-fit: cover; background: #000; }
+.vid-media video { width: 100%; height: 100%; will-change: auto; object-fit: cover; background: #000; }
 .vid-media.is-wide video { object-fit: contain; }
 .vid-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: radial-gradient(120% 90% at 50% 0%, #1d1d21, #08080a); color: rgba(255, 255, 255, .5); font: 500 12px var(--font-mono); letter-spacing: .5px; text-transform: uppercase; text-align: center; padding: 0 30px; }
 .has-video .vid-empty { display: none; }
@@ -2184,17 +2184,16 @@ strong { font-weight: 600; color: var(--white); }
 .vid-avatar { position: relative; width: 46px; height: 46px; margin-bottom: 8px; display: grid; place-items: center; border-radius: 50%; border: 2px solid #fff; background: linear-gradient(140deg, var(--red), #6d0209); font: 700 17px var(--font-body); }
 .vid-avatar::after { content: "+"; position: absolute; bottom: -10px; left: 50%; width: 20px; height: 20px; margin-left: -10px; display: grid; place-items: center; border-radius: 50%; background: var(--red); font: 700 14px/1 var(--font-body); }
 .vid-act { display: flex; flex-direction: column; align-items: center; gap: 3px; font: 600 12px var(--font-body); text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
-.vid-act svg { filter: drop-shadow(0 1px 5px rgba(0, 0, 0, .5)); }
 .vid-info { position: absolute; left: 14px; right: 78px; bottom: max(18px, env(safe-area-inset-bottom, 0px)); z-index: 3; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-shadow: 0 1px 8px rgba(0, 0, 0, .7); }
 .vid-handle { font: 700 15px var(--font-body); }
 .vid-desc { font: 400 13.5px/1.4 var(--font-body); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .vid-music { font: 400 12px var(--font-body); opacity: .85; }
-.vid-cta { margin-top: 4px; padding: 10px 16px; border: 0; border-radius: 10px; background: rgba(255, 255, 255, .16); backdrop-filter: blur(8px); color: #fff; font: 600 13px var(--font-body); cursor: pointer; }
+.vid-cta { margin-top: 4px; padding: 10px 16px; border: 0; border-radius: 10px; background: rgba(40, 40, 44, .82); color: #fff; font: 600 13px var(--font-body); cursor: pointer; }
 .vid-cta:hover { background: var(--red); }
 .is-editable { outline: 1px dashed rgba(255, 255, 255, .55); outline-offset: 3px; border-radius: 4px; cursor: text; -webkit-line-clamp: unset; display: block; }
 .vid-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255, 255, 255, .22); z-index: 4; }
 .vid-progress i { display: block; height: 100%; width: 0; background: #fff; }
-.vid-swipe { position: absolute; left: 50%; bottom: 27%; z-index: 5; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 18px; border-radius: 18px; background: rgba(0, 0, 0, .5); backdrop-filter: blur(6px); font: 600 12.5px var(--font-body); pointer-events: none; transition: opacity .35s ease; }
+.vid-swipe { position: absolute; left: 50%; bottom: 27%; z-index: 5; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 18px; border-radius: 18px; background: rgba(0, 0, 0, .62); font: 600 12.5px var(--font-body); pointer-events: none; transition: opacity .35s ease; }
 .vid-swipe svg { animation: vidSwipe 1.4s ease-in-out infinite; }
 .vid-swipe.is-gone { opacity: 0; }
 @keyframes vidSwipe { 0% { transform: translateY(8px); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-8px); opacity: 0; } }
