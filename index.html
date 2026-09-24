@@ -748,13 +748,24 @@
 
   <!-- TODO Matheus: trocar os placeholders por vídeos reais (curtos/anúncios) -->
   <div class="device-modal__panel" data-panel="phone" id="panelPhone" hidden>
-    <p class="carousel__eyebrow">&mdash; Vídeos/Anúncios (com IA) &mdash;</p>
-    <div class="vid-shelves" id="vidShelves"></div>
-    <div class="vid-player" id="vidPlayer" tabindex="-1" hidden role="dialog" aria-label="Player de vídeos">
-      <div class="vid-player__bar"><button type="button" id="vidBack">&larr; Voltar</button><span id="vidCount"></span></div>
-      <div class="vid-player__feed" id="vidPlayerFeed"></div>
+    <div class="vid-app" id="vidApp">
+      <div class="vid-stage" id="vidStage">
+        <div class="vid-top">
+          <div class="vid-tabs" id="vidTabs" role="tablist" aria-label="Nicho de vídeo">
+            <button type="button" role="tab" class="is-active" data-niche="ugc">UGC</button>
+            <button type="button" role="tab" data-niche="produto">Produto</button>
+            <button type="button" role="tab" data-niche="anuncio">Anúncio</button>
+          </div>
+        </div>
+        <button class="vid-sound" id="vidSound" type="button" aria-label="Ligar o som" aria-pressed="false"></button>
+        <div class="vid-feed" id="vidFeed" tabindex="0" aria-label="Vídeos do nicho"></div>
+        <div class="vid-swipe" id="vidSwipe" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg><span>Deslize para ver mais</span></div>
+      </div>
+      <div class="vid-arrows">
+        <button type="button" id="vidUp" aria-label="Vídeo anterior"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
+        <button type="button" id="vidDown" aria-label="Próximo vídeo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
     </div>
-    <button class="device-modal__cta device-modal__cta--phone" type="button" data-service-target="Vídeos/Anúncios com IA">Quero algo semelhante</button>
   </div>
 </div>
 

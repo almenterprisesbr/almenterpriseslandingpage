@@ -1055,49 +1055,209 @@
   })();
 })();
 
-/* vídeos: prateleira por nicho; toque numa miniatura abre o player em tela cheia (rola pra ver o próximo) */
+/* ==========================================================
+   VÍDEOS/ANÚNCIOS — interface estilo TikTok/Reels
+   Abas por nicho (UGC · Produto · Anúncio) + feed que rola para ver o próximo
+   ========================================================== */
 (function () {
-  var shelves = document.getElementById("vidShelves");
-  var player = document.getElementById("vidPlayer");
-  var feed = document.getElementById("vidPlayerFeed");
-  var back = document.getElementById("vidBack");
-  var count = document.getElementById("vidCount");
-  if (!shelves || !player || !feed || !back || !count) return;
+  var feed = document.getElementById("vidFeed");
+  var tabs = document.getElementById("vidTabs");
+  var swipe = document.getElementById("vidSwipe");
+  var sound = document.getElementById("vidSound");
+  var upBtn = document.getElementById("vidUp");
+  var downBtn = document.getElementById("vidDown");
+  var stage = document.getElementById("vidStage");
+  if (!feed || !tabs || !swipe || !sound || !stage) return;
 
-  /* quando os vídeos chegarem: trocar "v"/"h" por { ratio: "v", src, poster } */
+  var modal = document.getElementById("deviceModal");
+  var panel = document.getElementById("panelPhone");
+  var EDIT = !!window.VID_EDIT; /* só a página de prévia liga o modo edição */
+
+  /* ===== EDITE AQUI ==========================================
+     Um bloco { ... } por vídeo:
+       src    → caminho do arquivo em assets/video/portfolio/  (ex.: "assets/video/portfolio/ugc-01.mp4")
+                deixe "" para mostrar "Vídeo em breve"
+       poster → (opcional) imagem de capa
+       handle → o @ que aparece no vídeo
+       desc   → a descrição
+     Formato 9:16 ou 16:9: o site reconhece sozinho.
+     ========================================================== */
   var VIDEOS = {
-    ugc:     { title: "UGC",               items: ["v", "v", "h", "v"] },
-    produto: { title: "Produto",           items: ["v", "h", "h"] },
-    anuncio: { title: "Anúncio Comercial", items: ["h", "v", "h"] }
+    ugc: [
+      { src: "", poster: "", handle: "@almenterprises", desc: "Descrição do vídeo UGC. Edite aqui! #ugc #ia" },
+      { src: "", poster: "", handle: "@almenterprises", desc: "Segundo vídeo UGC #ugc #conteudo" },
+      { src: "", poster: "", handle: "@almenterprises", desc: "Terceiro vídeo UGC #ugc #ia" }
+    ],
+    produto: [
+      { src: "", poster: "", handle: "@almenterprises", desc: "Vídeo de produto #produto #ia" },
+      { src: "", poster: "", handle: "@almenterprises", desc: "Outro vídeo de produto #produto" },
+      { src: "", poster: "", handle: "@almenterprises", desc: "Mais um produto #produto #ia" }
+    ],
+    anuncio: [
+      { src: "", poster: "", handle: "@almenterprises", desc: "Anúncio comercial para o seu negócio #anuncio #ia" },
+      { src: "", poster: "", handle: "@almenterprises", desc: "Outro anúncio comercial #anuncio" },
+      { src: "", poster: "", handle: "@almenterprises", desc: "Mais um anúncio #anuncio #ia" }
+    ]
   };
-  var PLAY = '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
-  var current = "ugc";
+  /* ===== FIM DA ÁREA DE EDIÇÃO ================================= */
 
-  shelves.innerHTML = Object.keys(VIDEOS).map(function (k) {
-    var v = VIDEOS[k];
-    return '<section class="vid-row"><div class="vid-row__head"><h3>' + v.title + "</h3><span>" + v.items.length + ' vídeos</span></div><div class="vid-rail">' +
-      v.items.map(function (r, i) {
-        return '<button type="button" class="vid-thumb vid-thumb--' + r + '" data-niche="' + k + '" data-i="' + i + '" aria-label="' + v.title + ", vídeo " + (i + 1) + '">' +
-          '<span class="vid-thumb__tag">' + (r === "v" ? "9:16" : "16:9") + '</span><span class="vid-thumb__play">' + PLAY + "</span></button>";
-      }).join("") + "</div></section>";
-  }).join("");
+  function svg(p, fill) { return '<svg viewBox="0 0 24 24" width="30" height="30" fill="' + (fill ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + "</svg>"; }
+  var ICON = {
+    heart: svg('<path d="M12 21s-7.5-4.8-9.6-9.5C.9 8.1 2.8 4.5 6.2 4.5c2 0 3.6 1.1 4.6 2.7h2.4c1-1.6 2.6-2.7 4.6-2.7 3.4 0 5.3 3.6 3.8 7C19.5 16.2 12 21 12 21z"/>', true),
+    comment: svg('<path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9.5L4 21.5V5a1 1 0 0 1 0-1z"/>', true),
+    share: svg('<path d="M14 3l8 8-8 8v-5c-5.5 0-9 1.6-11.500 5.500C3.500 11.500 7.500 8 14 8V3z"/>', true),
+    play: svg('<path d="M8 5v14l11-7z"/>', true),
+    pause: svg('<path d="M7 5h3.500v14H7zM13.500 5H17v14h-3.500z"/>', true),
+    volOff: svg('<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l5 6M22 9l-5 6"/>'),
+    volOn: svg('<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.500 8.500a5 5 0 0 1 0 7M19 6a8.500 8.500 0 0 1 0 12"/>')
+  };
+  sound.innerHTML = ICON.volOff;
+  sound.firstChild.setAttribute("width", "20");
+  sound.firstChild.setAttribute("height", "20");
 
-  function update() {
-    var n = VIDEOS[current].items.length;
-    var i = Math.min(n, Math.round(feed.scrollTop / (feed.clientHeight || 1)) + 1);
-    count.textContent = VIDEOS[current].title + " · " + i + " / " + n;
+  var current = "ugc", muted = true, active = 0, ticking = false, slides = [];
+  function noop() {}
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function isOpen() { return !modal || (modal.classList.contains("is-open") && panel && !panel.hidden); }
+  function load(v) { if (!v.getAttribute("src") && v.dataset.src) { v.preload = "metadata"; v.src = v.dataset.src; } }
+
+  function slideHTML(v) {
+    var ce = EDIT ? ' contenteditable="true" spellcheck="false"' : "";
+    var ed = EDIT ? " is-editable" : "";
+    var handle = v.handle || "@usuario";
+    var attach = '<label class="vid-attach">' + (EDIT ? "Anexar vídeo" : "") + '<input type="file" accept="video/*"></label>';
+    return '<div class="vid-slide">' +
+      '<div class="vid-media' + (v.src ? " has-video" : "") + '">' +
+        '<video playsinline muted loop preload="none"' + (v.poster ? ' poster="' + esc(v.poster) + '"' : "") + (v.src ? ' data-src="' + esc(v.src) + '"' : "") + "></video>" +
+        '<div class="vid-empty"><span>Vídeo em breve</span>' + (EDIT ? attach : "") + "</div>" +
+        '<div class="vid-flash"></div>' +
+      "</div>" +
+      (EDIT ? '<label class="vid-attach vid-swap">Trocar vídeo<input type="file" accept="video/*"></label>' : "") +
+      '<div class="vid-shade"></div>' +
+      '<div class="vid-rail" aria-hidden="true">' +
+        '<div class="vid-avatar">' + esc(handle.replace("@", "").charAt(0).toUpperCase() || "A") + "</div>" +
+        '<div class="vid-act">' + ICON.heart + "<span>12,4 mil</span></div>" +
+        '<div class="vid-act">' + ICON.comment + "<span>238</span></div>" +
+        '<div class="vid-act">' + ICON.share + "<span>Enviar</span></div>" +
+      "</div>" +
+      '<div class="vid-info">' +
+        '<div class="vid-handle' + ed + '"' + ce + ">" + esc(handle) + "</div>" +
+        '<p class="vid-desc' + ed + '"' + ce + ">" + esc(v.desc || "") + "</p>" +
+        '<div class="vid-music">&#9835; som original</div>' +
+        '<button type="button" class="vid-cta" data-service-target="Vídeos/Anúncios com IA">Quero algo semelhante &rarr;</button>' +
+      "</div>" +
+      '<div class="vid-progress"><i></i></div>' +
+    "</div>";
   }
-  function open(niche, i) {
+
+  function bind(slide) {
+    var media = slide.querySelector(".vid-media");
+    var v = slide.querySelector("video");
+    var flash = slide.querySelector(".vid-flash");
+    var bar = slide.querySelector(".vid-progress i");
+    v.addEventListener("loadedmetadata", function () { media.classList.toggle("is-wide", v.videoWidth > v.videoHeight); });
+    v.addEventListener("timeupdate", function () { if (v.duration) bar.style.width = (v.currentTime / v.duration * 100) + "%"; });
+    media.addEventListener("click", function (e) {
+      if (e.target.closest("label") || !v.getAttribute("src")) return;
+      var play = v.paused;
+      if (play) v.play().catch(noop); else v.pause();
+      flash.innerHTML = play ? ICON.play : ICON.pause;
+      flash.classList.remove("is-on"); void flash.offsetWidth; flash.classList.add("is-on");
+    });
+    slide.querySelectorAll('input[type="file"]').forEach(function (inp) {
+      inp.addEventListener("change", function () {
+        var f = inp.files && inp.files[0];
+        if (!f) return;
+        v.removeAttribute("data-src");
+        v.src = URL.createObjectURL(f);
+        media.classList.add("has-video");
+        sync();
+      });
+    });
+  }
+
+  function sync() {
+    var open = isOpen();
+    slides.forEach(function (s, i) {
+      var v = s.querySelector("video");
+      if (open && (i === active || i === active + 1)) load(v);
+      if (open && i === active && v.getAttribute("src")) { v.muted = muted; v.play().catch(noop); }
+      else v.pause();
+    });
+  }
+  function arrows() {
+    if (upBtn) upBtn.disabled = active <= 0;
+    if (downBtn) downBtn.disabled = active >= slides.length - 1;
+  }
+  function go(n) {
+    var t = Math.max(0, Math.min(slides.length - 1, active + n));
+    feed.scrollTo({ top: t * feed.clientHeight, behavior: "smooth" });
+  }
+  function render(niche) {
     current = niche;
-    feed.innerHTML = VIDEOS[niche].items.map(function (r, k) {
-      return '<div class="vid-slide"><div class="vid-slide__media vid-slide__media--' + r + '"><span>' + VIDEOS[niche].title + " · " + (r === "v" ? "9:16" : "16:9") + " · vídeo " + (k + 1) + " em breve</span></div></div>";
-    }).join("");
-    player.hidden = false;
-    feed.scrollTop = i * feed.clientHeight;
-    update();
-    player.focus();
+    feed.innerHTML = VIDEOS[niche].map(slideHTML).join("");
+    slides = [].slice.call(feed.querySelectorAll(".vid-slide"));
+    slides.forEach(bind);
+    feed.scrollTop = 0;
+    active = 0;
+    swipe.classList.toggle("is-gone", slides.length < 2);
+    tabs.querySelectorAll("button").forEach(function (b) {
+      var on = b.dataset.niche === niche;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-selected", on);
+    });
+    arrows();
+    sync();
   }
-  shelves.addEventListener("click", function (e) { var t = e.target.closest(".vid-thumb"); if (t) open(t.dataset.niche, +t.dataset.i); });
-  back.addEventListener("click", function () { player.hidden = true; });
-  feed.addEventListener("scroll", update);
+
+  tabs.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b && b.dataset.niche !== current) render(b.dataset.niche); });
+  feed.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      if (feed.scrollTop > 24) swipe.classList.add("is-gone");
+      var i = Math.round(feed.scrollTop / (feed.clientHeight || 1));
+      if (i !== active) { active = i; arrows(); sync(); }
+    });
+  }, { passive: true });
+  if (upBtn) upBtn.addEventListener("click", function () { go(-1); });
+  if (downBtn) downBtn.addEventListener("click", function () { go(1); });
+  document.addEventListener("keydown", function (e) {
+    if (!isOpen() || (e.target.isContentEditable)) return;
+    if (e.key === "ArrowDown") { e.preventDefault(); go(1); }
+    if (e.key === "ArrowUp") { e.preventDefault(); go(-1); }
+  });
+  sound.addEventListener("click", function () {
+    muted = !muted;
+    sound.innerHTML = muted ? ICON.volOff : ICON.volOn;
+    sound.firstChild.setAttribute("width", "20"); sound.firstChild.setAttribute("height", "20");
+    sound.setAttribute("aria-pressed", String(!muted));
+    sound.setAttribute("aria-label", muted ? "Ligar o som" : "Desligar o som");
+    slides.forEach(function (s) { s.querySelector("video").muted = muted; });
+  });
+
+  /* botão "Quero algo semelhante": fecha o player e leva ao formulário de serviços */
+  feed.addEventListener("click", function (e) {
+    var b = e.target.closest(".vid-cta");
+    if (!b) return;
+    var closeBtn = document.getElementById("deviceModalClose");
+    if (closeBtn) closeBtn.click();
+    var service = b.getAttribute("data-service-target");
+    var servicos = document.getElementById("servicos");
+    var sel = document.querySelector('.card__select[data-service="' + service + '"]');
+    if (servicos) servicos.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (sel) setTimeout(function () {
+      if (sel.getAttribute("aria-pressed") !== "true") sel.click();
+      var card = sel.closest(".card, .ecosystem");
+      if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 450);
+  });
+
+  /* toca só quando o player está aberto; pausa tudo ao fechar */
+  if (modal) new MutationObserver(sync).observe(modal, { attributes: true, attributeFilter: ["class"] });
+  if (panel) new MutationObserver(sync).observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+
+  if (EDIT) stage.insertAdjacentHTML("beforeend", '<div class="vid-edit-badge">Modo edição</div>');
+  render("ugc");
 })();
