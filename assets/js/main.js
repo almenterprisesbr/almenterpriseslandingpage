@@ -1097,6 +1097,11 @@
       { src: "", poster: "", handle: "@almenterprises", desc: "Anúncio comercial para o seu negócio #anuncio #ia" },
       { src: "", poster: "", handle: "@almenterprises", desc: "Outro anúncio comercial #anuncio" },
       { src: "", poster: "", handle: "@almenterprises", desc: "Mais um anúncio #anuncio #ia" }
+    ],
+    motion: [
+      { src: "", poster: "", handle: "@almenterprises", desc: "Motion graphics para o seu negócio #motiongraphics #ia" },
+      { src: "", poster: "", handle: "@almenterprises", desc: "Outro motion graphics #motiongraphics" },
+      { src: "", poster: "", handle: "@almenterprises", desc: "Mais um motion #motiongraphics #ia" }
     ]
   };
   /* ===== FIM DA ÁREA DE EDIÇÃO ================================= */
@@ -1176,7 +1181,9 @@
     });
   }
 
+  function more() { tabs.classList.toggle("has-more", tabs.scrollLeft + tabs.clientWidth < tabs.scrollWidth - 4); }
   function sync() {
+    more();
     var open = isOpen();
     slides.forEach(function (s, i) {
       var v = s.querySelector("video");
@@ -1206,10 +1213,14 @@
       b.classList.toggle("is-active", on);
       b.setAttribute("aria-selected", on);
     });
+    var on = tabs.querySelector(".is-active");
+    if (on) tabs.scrollTo({ left: on.offsetLeft - (tabs.clientWidth - on.offsetWidth) / 2, behavior: "smooth" });
     arrows();
     sync();
   }
 
+  tabs.addEventListener("scroll", more, { passive: true });
+  window.addEventListener("resize", more);
   tabs.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b && b.dataset.niche !== current) render(b.dataset.niche); });
   feed.addEventListener("scroll", function () {
     if (ticking) return;
